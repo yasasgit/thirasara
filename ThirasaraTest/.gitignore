@@ -1,0 +1,14 @@
+﻿# Visual Studio files
+*.suo
+*.user
+*.sln.docstates
+bin/
+obj/
+Debug/
+Release/
+_ReSharper*
+*.vs/
+
+# Database files
+*.mdf
+*.ldf
