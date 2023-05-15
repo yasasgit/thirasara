@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RDotNet;
 
 namespace ThirasaraTest
 {
@@ -15,9 +14,11 @@ namespace ThirasaraTest
         [STAThread]
         static void Main()
         {
+            Console.ReadLine();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new Login());
         }
     }
 }
