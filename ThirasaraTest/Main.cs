@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MathNet.Numerics.Optimization;
+using Python.Runtime;
 
 namespace ThirasaraTest
 {
@@ -20,40 +21,23 @@ namespace ThirasaraTest
 
         private void btnOptimize_Click(object sender, EventArgs e)
         {
-            // Retrieve the column values from your DataGridView or any other control
-            double[] columnValues = GetColumnValues();
+            // Initialize the Python runtime
+            PythonEngine.Initialize();
 
-            // Define the objective function based on the column values
-            Func<double, double> objectiveFunction = (x) =>
+            // Execute Python code
+            using (Py.GIL())  // Acquire the Python Global Interpreter Lock (GIL)
             {
-                // Define your objective function here based on the column values
-                // For example, you can calculate the sum of squared differences from a target value
-                double sumOfSquaredDifferences = 0;
-                foreach (var value in columnValues)
-                {
-                    double difference = value - x;
-                    sumOfSquaredDifferences += difference * difference;
-                }
-                return sumOfSquaredDifferences;
-            };
+                dynamic np = Py.Import("numpy");
+                dynamic array = np.array(new int[] { 1, 2, 3, 4, 5 });
+                dynamic sum = np.sum(array);
 
-            // Use an optimization algorithm to find the optimal value
-            //var result = NelderMeadMinimizer.Minimize(objectiveFunction, initialValue: 0);
+                Console.WriteLine("Sum: " + sum);
+            }
 
-            // Update the user interface with the optimal value
-            //txtOptimalValue.Text = result.MinimizingPoint.ToString();
-        }
-
-        private double[] GetColumnValues()
-        {
-            // Retrieve the column values from your DataGridView or any other control
-            // Return an array of double values representing the column data
-            // Example:
-            // double[] columnValues = dataGridView1.Rows.Cast<DataGridViewRow>()
-            //     .Select(row => Convert.ToDouble(row.Cells["ColumnName"].Value))
-            //     .ToArray();
-            // return columnValues;
-            throw new NotImplementedException(); // Implement this method based on your specific UI design
+            // Shutdown the Python runtime
+            PythonEngine.Shutdown();
         }
     }
+
+
 }
