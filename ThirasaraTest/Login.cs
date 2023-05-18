@@ -15,7 +15,7 @@ namespace ThirasaraTest
 {
     public partial class Login : Form
     {
-        private const string CONNECTION_STRING = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\thirasaradb.mdf;Integrated Security=True";
+        private const string CONNECTION_STRING = @"Data Source=DESKTOP-A3HT73H;Initial Catalog=thirasaradb;Integrated Security=True;";
 
         public Login()
         {
