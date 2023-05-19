@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospital_Management_System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace ThirasaraTest
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new Login_Form());
         }
     }
 }
