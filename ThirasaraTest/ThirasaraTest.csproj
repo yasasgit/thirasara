@@ -79,6 +79,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cultivater_Board.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cultivater_Board.designer.cs">
+      <DependentUpon>Cultivater_Board.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Farmer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Farmer.designer.cs">
+      <DependentUpon>Farmer.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginSystem.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -92,10 +104,25 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Officer_Board.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Officer_Board.designer.cs">
+      <DependentUpon>Officer_Board.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Cultivater_Board.resx">
+      <DependentUpon>Cultivater_Board.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Farmer.resx">
+      <DependentUpon>Farmer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Officer_Board.resx">
+      <DependentUpon>Officer_Board.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
