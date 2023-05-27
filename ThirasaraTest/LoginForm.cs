@@ -11,6 +11,7 @@ namespace ThirasaraTest
         public LoginForm()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
             txtPassword.UseSystemPasswordChar = true;
         }
 
@@ -47,27 +48,26 @@ namespace ThirasaraTest
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text.Trim();
 
-            LoginSystem loginSystem = new LoginSystem();
-            string userType = loginSystem.Login(email, password);
+            string userType = UserManagement.Instance.Login(email, password);
 
             switch (userType)
             {
                 case "officer":
-                    MessageBox.Show("Login successful as Officer!");
+                    MessageBox.Show("Welcome Officer!");
                     this.Hide();
                     AdminForm adminForm = new AdminForm();
                     adminForm.Show();
                     break;
 
                 case "cultivator":
-                    MessageBox.Show("Login successful as Cultivator!");
+                    MessageBox.Show("Welcome Cultivator!");
                     this.Hide();
                     UserForm userForm = new UserForm();
                     userForm.Show();
                     break;
 
                 default:
-                    MessageBox.Show("Invalid email or password. Please try again.");
+                    MessageBox.Show("Invalid user type. Please contact administrator.");
                     break;
             }
         }

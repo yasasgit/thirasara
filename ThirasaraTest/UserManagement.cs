@@ -3,10 +3,29 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Forms;
 
-public class LoginSystem
+public class UserManagement
 {
     string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+    private static UserManagement instance;
+    public string LoggedInUser { get; set; }
+
+    private UserManagement()
+    {
+    }
+
+    public static UserManagement Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new UserManagement();
+            }
+            return instance;
+        }
+    }
 
     public string Login(string email, string password)
     {
@@ -29,7 +48,12 @@ public class LoginSystem
                         if (CompareByteArrays(passwordHash, storedHash))
                         {
                             string userType = (string)reader["account_type"];
+                            UserManagement.Instance.LoggedInUser = email;
                             return userType;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid email or password. Please try again.");
                         }
                     }
                     else

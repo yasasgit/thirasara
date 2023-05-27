@@ -92,7 +92,7 @@
     <Compile Include="Farmer.designer.cs">
       <DependentUpon>Farmer.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginSystem.cs" />
+    <Compile Include="UserManagement.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
