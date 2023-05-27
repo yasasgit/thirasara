@@ -12,3 +12,6 @@ _ReSharper*
 # Database files
 *.mdf
 *.ldf
+
+
+appsettings.json

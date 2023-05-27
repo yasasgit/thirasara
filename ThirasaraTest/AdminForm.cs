@@ -2,9 +2,9 @@
 
 namespace ThirasaraTest
 {
-    public partial class Farmer : Form
+    public partial class AdminForm : Form
     {
-        public Farmer()
+        public AdminForm()
         {
             InitializeComponent();
         }

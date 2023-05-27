@@ -2,9 +2,9 @@
 
 namespace ThirasaraTest
 {
-    public partial class Main : Form
+    public partial class UserForm : Form
     {
-        public Main()
+        public UserForm()
         {
             InitializeComponent();
         }

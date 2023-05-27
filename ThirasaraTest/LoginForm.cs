@@ -11,7 +11,14 @@ namespace ThirasaraTest
         public LoginForm()
         {
             InitializeComponent();
+            txtPassword.UseSystemPasswordChar = true;
         }
+
+        private void passwordCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !passwordCheck.Checked;
+        }
+
         private void txt_pass_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtPassword.Text.Trim()))
@@ -41,18 +48,27 @@ namespace ThirasaraTest
             string password = txtPassword.Text.Trim();
 
             LoginSystem loginSystem = new LoginSystem();
-            bool isAuthenticated = loginSystem.Login(email, password);
+            string userType = loginSystem.Login(email, password);
 
-            if (isAuthenticated)
+            switch (userType)
             {
-                MessageBox.Show("Login successful!");
-                this.Hide();
-                Main mainForm = new Main();
-                mainForm.Show();
-            }
-            else
-            {
-                MessageBox.Show("Invalid email or password. Please try again.");
+                case "officer":
+                    MessageBox.Show("Login successful as Officer!");
+                    this.Hide();
+                    AdminForm adminForm = new AdminForm();
+                    adminForm.Show();
+                    break;
+
+                case "cultivator":
+                    MessageBox.Show("Login successful as Cultivator!");
+                    this.Hide();
+                    UserForm userForm = new UserForm();
+                    userForm.Show();
+                    break;
+
+                default:
+                    MessageBox.Show("Invalid email or password. Please try again.");
+                    break;
             }
         }
     }

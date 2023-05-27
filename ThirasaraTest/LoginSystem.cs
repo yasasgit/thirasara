@@ -1,19 +1,22 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
 
 public class LoginSystem
 {
-    private const string CONNECTION_STRING = @"Data Source=DESKTOP-A3HT73H;Initial Catalog=thirasara_db;Integrated Security=True;";
-    public bool Login(string email, string password)
+    string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+
+    public string Login(string email, string password)
     {
         byte[] passwordHash = CalculateSHA1Hash(password);
 
-        using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+        using (SqlConnection connection = new SqlConnection(connectionString))
         {
             connection.Open();
-            string query = "SELECT password_hashed FROM user_data WHERE email = @email";
+
+            string query = "SELECT password_hashed, account_type FROM user_data WHERE email = @email";
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@email", email);
@@ -23,7 +26,11 @@ public class LoginSystem
                     if (reader.Read())
                     {
                         byte[] storedHash = (byte[])reader["password_hashed"];
-                        return CompareByteArrays(passwordHash, storedHash);
+                        if (CompareByteArrays(passwordHash, storedHash))
+                        {
+                            string userType = (string)reader["account_type"];
+                            return userType;
+                        }
                     }
                     else
                     {
@@ -33,7 +40,7 @@ public class LoginSystem
                 }
             }
         }
-        return false;
+        return "fail";
     }
 
     private byte[] CalculateSHA1Hash(string input)
