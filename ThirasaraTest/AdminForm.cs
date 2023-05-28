@@ -8,7 +8,7 @@ namespace ThirasaraTest
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
-            lblEmail.Text = UserManagement.Instance.LoggedInUser;
+            txtEmail.Text = UserManagement.Instance.LoggedInUser;
         }
     }
 }
