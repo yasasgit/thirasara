@@ -1,5 +1,5 @@
 -- possible scenarios for views
-
+-- result table includes all details about a crop cycle
 CREATE OR ALTER VIEW CropCycleSummaryView
 AS
 SELECT * 
@@ -13,4 +13,3 @@ FROM
     JOIN soil_texture_data AS std ON fd.soil_texture = std.soil_texture_id
 WHERE
     cc.crop = 1000;
--- result table

@@ -14,9 +14,9 @@ CREATE TABLE crop_data (
     suitable_sunlight_exposure_h_day VARCHAR(20),
     suitable_plant_density_ha VARCHAR(20),
     suitable_soil_ph VARCHAR(20),
-    suitable_soil_nitrogen_kg_ha VARCHAR(20),
-	suitable_soil_phosphorus_kg_ha VARCHAR(20),
-	suitable_soil_potassium_kg_ha VARCHAR(20),
+    suitable_nitrogen_kg_ha DECIMAL(10, 2),
+	suitable_phosphorus_kg_ha DECIMAL(10, 2),
+	suitable_potassium_kg_ha DECIMAL(10, 2),
     suitable_soil_texture VARCHAR(20),
 	feasible_yield_kg_ha VARCHAR(20),
     demand_per_crop_cycle_kg INT,
@@ -24,6 +24,7 @@ CREATE TABLE crop_data (
 );
 -- required factors stored in ranges and we assume they remain same during each stage of the crop 
 -- currently only implemented for the crop rice
+-- farmer uses required fertilizer amounts 
 
 CREATE TABLE user_data (
     nic INT IDENTITY(1000, 1) PRIMARY KEY,
@@ -102,7 +103,6 @@ CREATE TABLE crop_cycle_data (
 	environment INT NOT NULL,
 	planted_date DATE,
 	plant_density_ha INT,
-	pest_disease INT NOT NULL,
 	human_hours_ha DECIMAL(10, 2),
 	predicted_yield_kg_ha INT,
     harvest_date DATE,
@@ -114,6 +114,14 @@ CREATE TABLE crop_cycle_data (
 );
 -- should take sum of nutrients (soil + fertilizer)
 -- only environment factors change during a crop cycle
+
+CREATE TABLE crop_cycle_pest_disease (
+    data_id INT IDENTITY(1000, 1) PRIMARY KEY,
+    crop_cycle INT NOT NULL,
+    pest_disease INT NOT NULL,
+    FOREIGN KEY (crop_cycle) REFERENCES crop_cycle_data(crop_cycle_id),
+	FOREIGN KEY (pest_disease) REFERENCES pest_disease_data(pest_disease_id)
+);
 
 INSERT INTO User_Data (email, first_name, last_name, phone_number, password_hashed, account_type)
 VALUES
@@ -128,9 +136,9 @@ VALUES
 ('nadeesha@nsbm.ac.lk', 'Nadeesha', 'Ratnayake', '2345678901', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
 ('tharindu@nsbm.ac.lk', 'Tharindu', 'Gamage', '8901234567', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator');
 
-INSERT INTO crop_data (crop_name, genus, species, suitable_temperature_c, suitable_rainfall_irrigation_mm, suitable_humidity_percentage, suitable_wind_speed_m_s, suitable_sunlight_exposure_h_day, suitable_plant_density_ha, suitable_soil_ph, suitable_soil_nitrogen_kg_ha, suitable_soil_phosphorus_kg_ha, suitable_soil_potassium_kg_ha, suitable_soil_texture, feasible_yield_kg_ha, demand_per_crop_cycle_kg, supply_per_crop_cycle_kg)
+INSERT INTO crop_data (crop_name, genus, species, suitable_temperature_c, suitable_rainfall_irrigation_mm, suitable_humidity_percentage, suitable_wind_speed_m_s, suitable_sunlight_exposure_h_day, suitable_plant_density_ha, suitable_soil_ph, suitable_nitrogen_kg_ha, suitable_phosphorus_kg_ha, suitable_potassium_kg_ha, suitable_soil_texture, feasible_yield_kg_ha, demand_per_crop_cycle_kg, supply_per_crop_cycle_kg)
 VALUES 
-('Rice', 'Oryza', 'sativa', '20-35', '1000-2500', '70-90', '0.5-2.5', '6-8', '200-400', '5.5-7.0', '100-150', '30-60', '100-150', '3-8', '4000-6000', 5000, 3000);
+('Rice', 'Oryza', 'sativa', '20-35', '1000-2500', '70-90', '0.5-2.5', '6-8', '200-400', '5.5-7.0', 150, 60, 150, '3-8', '4000-6000', 5000, 3000);
 
 INSERT INTO fertilizer_data (fertilizer_name, fertilizer_nitrogen_kg_ha, fertilizer_phosphorus_kg_ha, fertilizer_potassium_kg_ha, other_nutrients_kg_ha)
 VALUES
@@ -172,3 +180,16 @@ VALUES
     ('Sandy Loam', 10),
     ('Silt Soil', 11),
     ('Sandy Soil', 12);
+
+
+INSERT INTO crop_cycle_pest_disease (crop_cycle, pest_disease)
+VALUES
+    (1002, 1000), (1002, 1001), 
+    (1003, 1000), (1003, 1001), (1003, 1003),
+    (1007, 1000), (1007, 1002), 
+    (1008, 1001), (1008, 1003), (1008, 1002),
+    (1009, 1002), (1009, 1001), 
+    (1010, 1003), (1010, 1000);
+
+
+ 
