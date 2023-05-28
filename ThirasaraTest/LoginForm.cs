@@ -71,5 +71,12 @@ namespace ThirasaraTest
                     break;
             }
         }
+
+        private void btnRtest_Click(object sender, EventArgs e)
+        {
+            MathDotNet mdntest = new MathDotNet();
+            mdntest.PerformLinearRegression();
+            mdntest.PerformAprioriAnalysis();
+        }
     }
 }

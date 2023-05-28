@@ -39,6 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnRtest = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -157,6 +158,16 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // btnRtest
+            // 
+            this.btnRtest.Location = new System.Drawing.Point(1008, 629);
+            this.btnRtest.Name = "btnRtest";
+            this.btnRtest.Size = new System.Drawing.Size(75, 23);
+            this.btnRtest.TabIndex = 4;
+            this.btnRtest.Text = "Test R";
+            this.btnRtest.UseVisualStyleBackColor = true;
+            this.btnRtest.Click += new System.EventHandler(this.btnRtest_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 10F);
@@ -164,6 +175,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.btnRtest);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
@@ -193,6 +205,7 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button btnRtest;
     }
 }
 
