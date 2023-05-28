@@ -22,9 +22,8 @@ CREATE TABLE crop_data (
     demand_per_crop_cycle_kg INT,
 	supply_per_crop_cycle_kg INT
 );
--- suitable factors in ranges
--- required factors remain same suring each stage of the crop 
--- only rice
+-- required factors stored in ranges and we assume they remain same during each stage of the crop 
+-- currently only implemented for the crop rice
 
 CREATE TABLE user_data (
     nic INT IDENTITY(1000, 1) PRIMARY KEY,
@@ -35,8 +34,8 @@ CREATE TABLE user_data (
     password_hashed BINARY(20) NOT NULL,
     account_type VARCHAR(10) NOT NULL CHECK (account_type IN ('cultivator', 'officer'))
 );
--- integer nic
--- sha1 password hashing
+-- nic is a integer 
+-- password stored as sha1 hashing
 
 CREATE TABLE fertilizer_data (
     fertilizer_id INT IDENTITY(1000, 1) PRIMARY KEY,
@@ -118,35 +117,46 @@ CREATE TABLE crop_cycle_data (
 
 INSERT INTO User_Data (email, first_name, last_name, phone_number, password_hashed, account_type)
 VALUES
-    ('yasas99@outlook.com', 'Yasas', 'Harshana', '0761916565', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'officer'),
-    ('person2@example.com', 'Shaveen', 'Maleesha', '0987654321', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
-    ('person3@example.com', 'Wimukthi', 'Dulaj', '5678901234', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'officer'),
-    ('person4@example.com', 'Stephan', 'Fernando', '4321098765', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'officer'),
-    ('email1@example.com', 'Uditha', 'Sampath', '1234567890', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
-    ('email2@example.com', 'Namindu', 'Hasalanka', '9876543210', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
-    ('email3@example.com', 'Ravindu', 'Silva', '4567890123', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
-    ('email4@example.com', 'Amali', 'Jayawardena', '7890123456', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
-    ('email5@example.com', 'Nadeesha', 'Ratnayake', '2345678901', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
-    ('email6@example.com', 'Tharindu', 'Gamage', '8901234567', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator');
+('yasas99@outlook.com', 'Yasas', 'Harshana', '0761916565', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'officer'),
+('shaveen@nsbm.ac.lk', 'Shaveen', 'Maleesha', '0987654321', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
+('wimukthi@nsbm.ac.lk', 'Wimukthi', 'Dulaj', '5678901234', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'officer'),
+('stephan@nsbm.ac.lk', 'Stephan', 'Fernando', '4321098765', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'officer'),
+('uditha@nsbm.ac.lk', 'Uditha', 'Sampath', '1234567890', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
+('namindu@nsbm.ac.lk', 'Namindu', 'Hasalanka', '9876543210', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
+('ravindu@nsbm.ac.lk', 'Ravindu', 'Silva', '4567890123', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
+('amali@nsbm.ac.lk', 'Amali', 'Jayawardena', '7890123456', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
+('nadeesha@nsbm.ac.lk', 'Nadeesha', 'Ratnayake', '2345678901', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
+('tharindu@nsbm.ac.lk', 'Tharindu', 'Gamage', '8901234567', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator');
 
 INSERT INTO crop_data (crop_name, genus, species, suitable_temperature_c, suitable_rainfall_irrigation_mm, suitable_humidity_percentage, suitable_wind_speed_m_s, suitable_sunlight_exposure_h_day, suitable_plant_density_ha, suitable_soil_ph, suitable_soil_nitrogen_kg_ha, suitable_soil_phosphorus_kg_ha, suitable_soil_potassium_kg_ha, suitable_soil_texture, feasible_yield_kg_ha, demand_per_crop_cycle_kg, supply_per_crop_cycle_kg)
 VALUES 
-('Rice', 'Oryza', 'sativa', '20-35', '1500-2500', '70-90', '0.5-2.5', '6-8', '200-400', '5.5-6.5', '80-120', '40-60', '120-200', 'Clayey loam', '4000-6000', 1000, 800);
+('Rice', 'Oryza', 'sativa', '20-35', '1000-2500', '70-90', '0.5-2.5', '6-8', '200-400', '5.5-7.0', '100-150', '30-60', '100-150', '3-8', '4000-6000', 5000, 3000);
 
 INSERT INTO fertilizer_data (fertilizer_name, fertilizer_nitrogen_kg_ha, fertilizer_phosphorus_kg_ha, fertilizer_potassium_kg_ha, other_nutrients_kg_ha)
-VALUES 
-    ('Fertilizer A', 50.25, 20.50, 30.75, 10.00),
-    ('Fertilizer B', 40.00, 10.25, 50.00, 15.50),
-    ('Fertilizer C', 60.75, 30.00, 20.25, 5.75),
-    ('Fertilizer D', 45.50, 25.75, 15.00, 8.25);
+VALUES
+('Urea', 100, 0, 0, 0),
+('DAP', 18, 46, 0, 0),
+('Potassium chloride', 0, 0, 60, 0),
+('Ammonium sulfate', 21, 0, 0, 0),
+('Single superphosphate', 0, 18, 0, 0),
+('Triple superphosphate', 0, 46, 0, 0),
+('Ammonium nitrate', 33, 0, 0, 0),
+('Ammonium phosphate sulfate', 15, 15, 0, 0),
+('Calcium ammonium nitrate', 27, 0, 0, 0),
+('Urea ammonium nitrate', 32, 0, 0, 0);
 
 INSERT INTO pest_disease_data (pest_disease_name, vulnerable_crops, severity_level)
-VALUES 
-    ('Aphids', 'Tomatoes, Peppers, Lettuce', 3),
-    ('Powdery Mildew', 'Grapes, Apples, Cucumbers', 2),
-    ('Fusarium Wilt', 'Bananas, Tomatoes, Watermelons', 4),
-    ('Late Blight', 'Potatoes, Tomatoes', 5),
-    ('Cabbage Worm', 'Cabbage, Broccoli, Cauliflower', 2);
+VALUES
+('Rice Blast', 'Rice', 8),
+('Brown Planthopper', 'Rice', 7),
+('Rice Leaf Folder', 'Rice', 6),
+('Rice Tungro Virus', 'Rice', 9),
+('Sheath Blight', 'Rice', 7),
+('Rice Hispa', 'Rice', 5),
+('Rice Whorl Maggot', 'Rice', 6),
+('Bacterial Leaf Blight', 'Rice', 8),
+('Rice Gall Midge', 'Rice', 7),
+('Rice Stem Borer', 'Rice', 9);
 
 INSERT INTO soil_texture_data (soil_texture_name, soil_texture_level)
 VALUES
