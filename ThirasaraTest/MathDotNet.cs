@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Accord.MachineLearning.Rules;
+﻿using Accord.MachineLearning.Rules;
 using Accord.Math.Optimization.Losses;
 using Accord.Statistics.Models.Regression.Linear;
+using System;
+using System.Collections.Generic;
 
 public class MathDotNet
 {
