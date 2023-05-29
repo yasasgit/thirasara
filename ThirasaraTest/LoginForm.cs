@@ -72,11 +72,11 @@ namespace ThirasaraTest
             }
         }
 
+        [Obsolete]
         private void btnRtest_Click(object sender, EventArgs e)
         {
-            MathDotNet mdntest = new MathDotNet();
+            AdvancedAlgorithm mdntest = new AdvancedAlgorithm();
             mdntest.PerformLinearRegression();
-            mdntest.PerformAprioriAnalysis();
         }
     }
 }

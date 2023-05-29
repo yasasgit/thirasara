@@ -39,5 +39,10 @@ namespace ThirasaraTest
             cropCycleDataGridView.DataSource = dataTable;
         }
 
+        private void btnPnD_Click(object sender, System.EventArgs e)
+        {
+            AdvancedAlgorithm mdntest = new AdvancedAlgorithm();
+            mdntest.PerformAprioriAnalysis();
+        }
     }
 }

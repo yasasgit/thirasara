@@ -41,6 +41,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.cropCycleDataGridView = new System.Windows.Forms.DataGridView();
+            this.btnPnD = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cropCycleDataGridView)).BeginInit();
@@ -162,12 +163,23 @@
             this.cropCycleDataGridView.Size = new System.Drawing.Size(891, 430);
             this.cropCycleDataGridView.TabIndex = 23;
             // 
+            // btnPnD
+            // 
+            this.btnPnD.Location = new System.Drawing.Point(853, 661);
+            this.btnPnD.Name = "btnPnD";
+            this.btnPnD.Size = new System.Drawing.Size(85, 56);
+            this.btnPnD.TabIndex = 24;
+            this.btnPnD.Text = "Vulnerable Crops";
+            this.btnPnD.UseVisualStyleBackColor = true;
+            this.btnPnD.Click += new System.EventHandler(this.btnPnD_Click);
+            // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGreen;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.btnPnD);
             this.Controls.Add(this.cropCycleDataGridView);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -207,5 +219,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.DataGridView cropCycleDataGridView;
+        private System.Windows.Forms.Button btnPnD;
     }
 }

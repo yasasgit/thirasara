@@ -180,7 +180,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MathDotNet.cs" />
+    <Compile Include="AdvancedAlgorithm.cs" />
     <Compile Include="UserForm.cs">
       <SubType>Form</SubType>
     </Compile>
