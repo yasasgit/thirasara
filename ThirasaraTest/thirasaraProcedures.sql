@@ -22,16 +22,16 @@ BEGIN
     sunlight_exposure_h_day,
     human_hours_ha,
     yield_kg_ha
- FROM CropCycleSummaryView
+ FROM CropCycleAllView
     WHERE email = @email;
 END;
-
+-- for farmer
 EXEC GetCropCycleData @email = 'email5@example.com';
 
 
 
 -- Inserts Random Data for Prototype
-CREATE OR ALTER PROCEDURE InsertData
+CREATE OR ALTER PROCEDURE InsertTainData
 AS
 BEGIN
 	-- disable the message that shows the number of rows affected 
@@ -148,4 +148,4 @@ BEGIN
 
 END;
 
-EXEC InsertData;
+EXEC InsertTrainData;

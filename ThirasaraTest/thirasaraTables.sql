@@ -1,6 +1,6 @@
-CREATE DATABASE thirasara_db;
+CREATE DATABASE thirasara_test_db;
 
-USE thirasara_db;
+USE thirasara_test_db;
 
 CREATE TABLE crop_data (
     crop_id INT IDENTITY(1000, 1) PRIMARY KEY,
@@ -24,7 +24,7 @@ CREATE TABLE crop_data (
 );
 -- required factors stored in ranges and we assume they remain same during each stage of the crop 
 -- currently only implemented for the crop rice
--- farmer uses required fertilizer amounts 
+-- farmer uses required fertilizer amounts his added amounts and suggested required amounts gets displayed
 
 CREATE TABLE user_data (
     nic INT IDENTITY(1000, 1) PRIMARY KEY,
@@ -55,22 +55,18 @@ CREATE TABLE soil_texture_data (
 
 CREATE TABLE field_data (
     field_id INT IDENTITY(1000, 1) PRIMARY KEY,
-    land_owner INT NOT NULL,
+	cultivator INT NOT NULL,
     size_ha DECIMAL(10, 2) NOT NULL,
     field_location VARCHAR(255) NOT NULL,
-	fertilizer INT NOT NULL,
     soil_nitrogen_kg_ha DECIMAL(10, 2),
     soil_phosphorus_kg_ha DECIMAL(10, 2),
     soil_potassium_kg_ha DECIMAL(10, 2),
-	fertilizer_kg_ha DECIMAL(10, 2),
 	soil_ph DECIMAL(10, 2),
     soil_texture INT,
-	FOREIGN KEY (land_owner) REFERENCES user_data(nic),
-	FOREIGN KEY (fertilizer) REFERENCES fertilizer_data(fertilizer_id),
+	FOREIGN KEY (cultivator) REFERENCES user_data(nic),
 	FOREIGN KEY (soil_texture) REFERENCES soil_texture_data(soil_texture_id)
 );
 -- farmers only use one crop at a time per field
--- farmers only use one fertilizer at a time per field
 -- only areas in homagama
 
 CREATE TABLE environment_data (
@@ -98,22 +94,24 @@ CREATE TABLE pest_disease_data (
 
 CREATE TABLE crop_cycle_data (
     crop_cycle_id INT IDENTITY(1000, 1) PRIMARY KEY,
-	cultivator INT NOT NULL,
 	crop INT NOT NULL,
 	environment INT NOT NULL,
-	planted_date DATE,
 	plant_density_ha INT,
 	human_hours_ha DECIMAL(10, 2),
+    fertilizer INT NOT NULL,
+    fertilizer_kg_ha DECIMAL(10, 2),
 	predicted_yield_kg_ha INT,
+    planted_date DATE,
     harvest_date DATE,
 	yield_kg_ha INT,
-	FOREIGN KEY (cultivator) REFERENCES user_data(nic),
+    FOREIGN KEY (fertilizer) REFERENCES fertilizer_data(fertilizer_id),
 	FOREIGN KEY (crop) REFERENCES crop_data(crop_id),
-    FOREIGN KEY (environment) REFERENCES environment_data(environment_data_id),
-	FOREIGN KEY (pest_disease) REFERENCES pest_disease_data(pest_disease_id)
+    FOREIGN KEY (environment) REFERENCES environment_data(environment_data_id)
 );
 -- should take sum of nutrients (soil + fertilizer)
 -- only environment factors change during a crop cycle
+-- farmers only use one fertilizer at a time per cycle
+-- predicts yield based on selected factors
 
 CREATE TABLE crop_cycle_pest_disease (
     data_id INT IDENTITY(1000, 1) PRIMARY KEY,
@@ -126,15 +124,15 @@ CREATE TABLE crop_cycle_pest_disease (
 INSERT INTO User_Data (email, first_name, last_name, phone_number, password_hashed, account_type)
 VALUES
 ('yasas99@outlook.com', 'Yasas', 'Harshana', '0761916565', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'officer'),
-('shaveen@nsbm.ac.lk', 'Shaveen', 'Maleesha', '0987654321', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
-('wimukthi@nsbm.ac.lk', 'Wimukthi', 'Dulaj', '5678901234', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'officer'),
-('stephan@nsbm.ac.lk', 'Stephan', 'Fernando', '4321098765', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'officer'),
-('uditha@nsbm.ac.lk', 'Uditha', 'Sampath', '1234567890', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
-('namindu@nsbm.ac.lk', 'Namindu', 'Hasalanka', '9876543210', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
-('ravindu@nsbm.ac.lk', 'Ravindu', 'Silva', '4567890123', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
-('amali@nsbm.ac.lk', 'Amali', 'Jayawardena', '7890123456', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
-('nadeesha@nsbm.ac.lk', 'Nadeesha', 'Ratnayake', '2345678901', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
-('tharindu@nsbm.ac.lk', 'Tharindu', 'Gamage', '8901234567', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator');
+('shaveen.mod@gmail.com', 'Shaveen', 'Maleesha', '0987654321', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
+('noob.wima@gmail.com', 'Wimukthi', 'Dulaj', '5678901234', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'officer'),
+('stephan.chad@gmail.com', 'Stephan', 'Fernando', '4321098765', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'officer'),
+('uditha.biyeah@live.com', 'Uditha', 'Sampath', '1234567890', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
+('ice.namidu@tiktok.com', 'Namindu', 'Hasalanka', '9876543210', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
+('ravindu@yahoo.com', 'Ravindu', 'Silva', '4567890123', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
+('amali@outlook.com', 'Amali', 'Jayawardena', '7890123456', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
+('nadeesha@slt.lk', 'Nadeesha', 'Ratnayake', '2345678901', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator'),
+('tharindu@gmail.com', 'Tharindu', 'Gamage', '8901234567', 0x5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8, 'cultivator');
 
 INSERT INTO crop_data (crop_name, genus, species, suitable_temperature_c, suitable_rainfall_irrigation_mm, suitable_humidity_percentage, suitable_wind_speed_m_s, suitable_sunlight_exposure_h_day, suitable_plant_density_ha, suitable_soil_ph, suitable_nitrogen_kg_ha, suitable_phosphorus_kg_ha, suitable_potassium_kg_ha, suitable_soil_texture, feasible_yield_kg_ha, demand_per_crop_cycle_kg, supply_per_crop_cycle_kg)
 VALUES 
@@ -173,9 +171,9 @@ VALUES
     ('Silty Clay Loam', 3),
     ('Clayey Silt', 4),
     ('Sandy Clay Loam', 5),
-    ('Clay Loam', 6),
-    ('Sandy Clay', 7),
-    ('Silty Loam', 8),
+    ('Sandy Clay', 6),
+    ('Silty Loam', 7),
+    ('Clay Loam', 8),
     ('Loam Soil', 9),
     ('Sandy Loam', 10),
     ('Silt Soil', 11),
@@ -185,11 +183,21 @@ VALUES
 INSERT INTO crop_cycle_pest_disease (crop_cycle, pest_disease)
 VALUES
     (1002, 1000), (1002, 1001), 
-    (1003, 1000), (1003, 1001), (1003, 1003),
-    (1007, 1000), (1007, 1002), 
-    (1008, 1001), (1008, 1003), (1008, 1002),
-    (1009, 1002), (1009, 1001), 
-    (1010, 1003), (1010, 1000);
+    (1003, 1002), (1003, 1003), (1003, 1004),
+    (1007, 1005), 
+    (1008, 1006), (1008, 1007), (1008, 1008),
+    (1009, 1009), (1009, 1010), 
+    (1010, 1003),
+    (1000, 1000), (1002, 1001), (1004, 1005), (1000, 1006),
+    (1001, 1008), (1001, 1007), 
+    (1004, 1001), (1004, 1009), (1004, 1010),
+    (1005, 1002), (1005, 1001), (1005, 1003), (1005, 1005),
+    (1006, 1004),
+    (1011, 1006), (1011, 1002), (1011, 1008), (1011, 1009),
+    (1012, 1007), (1012, 1005), 
+    (1013, 1004), (1013, 1001), (1013, 1002), (1013, 1008),
+    (1014, 1007),
+    (1015, 1005), (1015, 1002);
 
 
  
