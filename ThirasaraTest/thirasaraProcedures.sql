@@ -37,7 +37,7 @@ BEGIN
 	-- disable the message that shows the number of rows affected 
 	SET NOCOUNT ON;
 
-    DECLARE @counter INT = 0, @user_rows INT = 10, @crop_rows INT = 2, @field_rows INT = 50, @environment_rows INT = 100, @crop_cycle_rows INT = 200,
+    DECLARE @counter INT = 0, @user_id INT = 10, @crop_id INT = 2, @field_id INT = 50, @environment_id INT = 100, @crop_cycle_rows INT = 200,
 
 			@land_owner INT, @size_ha DECIMAL(10, 2), @field_location VARCHAR(255), @fertilizer INT, @soil_nitrogen_kg_ha DECIMAL(10, 2), @soil_phosphorus_kg_ha DECIMAL(10, 2), @soil_potassium_kg_ha DECIMAL(10, 2), @fertilizer_kg_ha DECIMAL(10, 2), @soil_ph DECIMAL(10, 2), @soil_texture INT,
 
@@ -45,9 +45,9 @@ BEGIN
 			
 			@cultivator INT, @crop INT, @environment INT, @planted_date DATE, @plant_density_ha INT,  @pest_disease INT, @human_hours_ha DECIMAL(10, 2), @harvest_date DATE , @yield_kg_ha INT;
 
-    WHILE @counter < @field_rows
+    WHILE @counter < @field_id
     BEGIN
-        SET @land_owner = CAST((1000 + ROUND(RAND() * (@user_rows - 1), 0)) AS INT);
+        SET @land_owner = CAST((1000 + ROUND(RAND() * (@user_id - 1), 0)) AS INT);
 		SET @size_ha = ROUND(RAND() * 100, 2);
         SET @field_location = (CASE ROUND(RAND() * 30, 0)
                 WHEN 0 THEN 'Arachchigoda'
@@ -103,9 +103,9 @@ BEGIN
     END;
 
 	SET @counter = 0;
-    WHILE @counter < @environment_rows
+    WHILE @counter < @environment_id
     BEGIN
-		SET @field = CAST((1000 + ROUND(RAND() * (@field_rows - 1), 0)) AS INT);
+		SET @field = CAST((1000 + ROUND(RAND() * (@field_id - 1), 0)) AS INT);
 		SET @temperature_c = ROUND((25 + RAND() * 15), 2); -- Random value between 15 and 40
         SET @rainfall_irrigation_mm = ROUND(RAND() * 500, 2); -- Random value between 0 and 500
         SET @humidity_perc = ROUND((30 + RAND() * 50), 0); -- Random value between 30 and 80
@@ -124,12 +124,12 @@ BEGIN
     END;
 
 	SET @counter = 0;
-	WHILE @counter < @crop_cycle_rows
+	WHILE @counter < @crop_cycle_id
     BEGIN
-        SET @cultivator = CAST((1000 + ROUND(RAND() * (@user_rows - 1), 0)) AS INT);
-        SET @crop = CAST((1000 + ROUND(RAND() * (@crop_rows - 1), 0)) AS INT);
+        SET @cultivator = CAST((1000 + ROUND(RAND() * (@user_id - 1), 0)) AS INT);
+        SET @crop = CAST((1000 + ROUND(RAND() * (@crop_id - 1), 0)) AS INT);
         SET @plant_density_ha = CAST((100 + RAND() * (120000 - 100 + 1)) AS INT);
-        SET @environment = CAST((1000 + ROUND(RAND() * (@environment_rows - 1), 0)) AS INT);
+        SET @environment = CAST((1000 + ROUND(RAND() * (@environment_id - 1), 0)) AS INT);
         SET @pest_disease = CAST((1000 + ROUND(RAND() * 4, 0)) AS INT);
         SET @human_hours_ha = RAND() * 553 + 7;
         SET @yield_kg_ha = CAST((500 + RAND() * (8000 - 500 + 1)) AS INT);

@@ -259,6 +259,7 @@
   <ItemGroup>
     <Content Include="thirasaraFunctions.sql" />
     <Content Include="thirasaraProcedures.sql" />
+    <Content Include="thirasaraInsert.sql" />
     <Content Include="thirasaraTables.sql" />
     <Content Include="thirasaraTriggers.sql" />
     <Content Include="thirasaraViews.sql" />
