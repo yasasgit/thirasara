@@ -1,6 +1,6 @@
 ﻿namespace ThirasaraTest
 {
-    partial class UserForm
+    partial class FarmerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FarmerForm));
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblNic = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -42,9 +41,12 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.cropCycleDataGridView = new System.Windows.Forms.DataGridView();
             this.btnPnD = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.fertilizerDataGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cropCycleDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fertilizerDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox3
@@ -62,14 +64,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(154, 21);
             this.textBox2.TabIndex = 14;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(349, 61);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(154, 21);
-            this.txtEmail.TabIndex = 13;
             // 
             // label4
             // 
@@ -89,14 +83,14 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "User Name";
             // 
-            // lblEmail
+            // lblNic
             // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(251, 61);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(36, 16);
-            this.lblEmail.TabIndex = 9;
-            this.lblEmail.Text = "Email";
+            this.lblNic.AutoSize = true;
+            this.lblNic.Location = new System.Drawing.Point(251, 61);
+            this.lblNic.Name = "lblNic";
+            this.lblNic.Size = new System.Drawing.Size(27, 16);
+            this.lblNic.TabIndex = 9;
+            this.lblNic.Text = "NIC";
             // 
             // label5
             // 
@@ -160,8 +154,10 @@
             this.cropCycleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.cropCycleDataGridView.Location = new System.Drawing.Point(47, 225);
             this.cropCycleDataGridView.Name = "cropCycleDataGridView";
-            this.cropCycleDataGridView.Size = new System.Drawing.Size(891, 430);
+            this.cropCycleDataGridView.Size = new System.Drawing.Size(621, 409);
             this.cropCycleDataGridView.TabIndex = 23;
+            this.cropCycleDataGridView.SelectionChanged += CropCycleDataGridView_SelectionChanged;
+
             // 
             // btnPnD
             // 
@@ -173,12 +169,32 @@
             this.btnPnD.UseVisualStyleBackColor = true;
             this.btnPnD.Click += new System.EventHandler(this.btnPnD_Click);
             // 
-            // UserForm
+            // btnLogout
+            // 
+            this.btnLogout.Location = new System.Drawing.Point(1066, 46);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.TabIndex = 25;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // fertilizerDataGridView
+            // 
+            this.fertilizerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.fertilizerDataGridView.Location = new System.Drawing.Point(853, 225);
+            this.fertilizerDataGridView.Name = "fertilizerDataGridView";
+            this.fertilizerDataGridView.Size = new System.Drawing.Size(437, 334);
+            this.fertilizerDataGridView.TabIndex = 26;
+            // 
+            // FarmerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGreen;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.fertilizerDataGridView);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnPnD);
             this.Controls.Add(this.cropCycleDataGridView);
             this.Controls.Add(this.label7);
@@ -186,20 +202,20 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.lblNic);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "UserForm";
+            this.Name = "FarmerForm";
             this.Text = "Farmer";
             this.Load += new System.EventHandler(this.UserForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cropCycleDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fertilizerDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,15 +226,16 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblNic;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.DataGridView cropCycleDataGridView;
         private System.Windows.Forms.Button btnPnD;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.DataGridView fertilizerDataGridView;
     }
 }

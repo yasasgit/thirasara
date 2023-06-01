@@ -27,7 +27,7 @@ CREATE TABLE crop_data (
 -- farmer uses required fertilizer amounts his added amounts and suggested required amounts gets displayed
 
 CREATE TABLE user_data (
-    nic SMALLINT IDENTITY(1000, 1) PRIMARY KEY,
+    nic VARCHAR(10) PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
@@ -55,7 +55,7 @@ CREATE TABLE soil_texture_data (
 
 CREATE TABLE field_data (
     field_id SMALLINT IDENTITY(1000, 1) PRIMARY KEY,
-	cultivator SMALLINT,
+	cultivator VARCHAR(10),
     size_ha DECIMAL(10, 2) NOT NULL,
     field_location VARCHAR(255),
     soil_nitrogen_kg_ha TINYINT,

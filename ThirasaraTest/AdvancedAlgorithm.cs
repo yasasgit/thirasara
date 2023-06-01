@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 
 public class AdvancedAlgorithm
 {
@@ -119,7 +120,7 @@ public class AdvancedAlgorithm
 
     }
 
-    public void PerformAprioriAnalysis()
+    public string PerformAprioriAnalysis()
     {
         using (var conn = new SqlConnection(connectionString))
         {
@@ -135,13 +136,13 @@ public class AdvancedAlgorithm
                     Dictionary<int, SortedSet<int>> rowDictionary = new Dictionary<int, SortedSet<int>>();
                     foreach (DataRow row in datasetTable.Rows)
                     {
-                        int firstElement = (int)row[0];
+                        short firstElement = (short)row[0];
                         if (rowDictionary.ContainsKey(firstElement))
                         {
                             SortedSet<int> existingSet = rowDictionary[firstElement];
                             for (int i = 1; i < row.ItemArray.Length; i++)
                             {
-                                existingSet.Add((int)row[i]);
+                                existingSet.Add((short)row[i]);
                             }
                         }
                         else
@@ -149,31 +150,43 @@ public class AdvancedAlgorithm
                             SortedSet<int> newSet = new SortedSet<int>();
                             for (int i = 1; i < row.ItemArray.Length; i++)
                             {
-                                newSet.Add((int)row[i]);
+                                newSet.Add((short)row[i]);
                             }
                             rowDictionary.Add(firstElement, newSet);
                         }
                     }
                     SortedSet<int>[] dataset = rowDictionary.Values.ToArray();
+                    for (int i = 0; i < dataset.Length; i++)
+                    {
+                        foreach (int value in dataset[i])
+                        {
+                            Console.Write(value);
+                        }
+                    }
 
-                    var apriori = new Apriori(threshold: 0, confidence: 0.5);
+                    var apriori = new Apriori(threshold: 3, confidence: 0);
                     AssociationRuleMatcher<int> classifier = apriori.Learn(dataset);
 
                     int[][] matches = classifier.Decide(new[] { 1002, 1001 });
 
+                    StringBuilder sb = new StringBuilder();
+
                     foreach (var match in matches)
                     {
-                        Console.WriteLine($"new int[] {{ {string.Join(", ", match)} }}");
+                        sb.AppendLine($"new int[] {{ {string.Join(", ", match)} }}");
                     }
 
                     AssociationRule<int>[] rules = classifier.Rules;
+                    
 
                     foreach (var rule in rules)
                     {
                         var antecedent = string.Join(", ", rule.X);
                         var consequent = string.Join(", ", rule.Y);
-                        Console.WriteLine($"[{antecedent}] -> [{consequent}]; support: {rule.Support}, confidence: {rule.Confidence}");
+                        sb.AppendLine($"[{antecedent}] -> [{consequent}]; support: {rule.Support}, confidence: {rule.Confidence}");
                     }
+
+                    return sb.ToString();
                 }
             }
         }

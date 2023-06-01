@@ -1,6 +1,6 @@
 ﻿namespace ThirasaraTest
 {
-    partial class AdminForm
+    partial class OfficerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OfficerForm));
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblNic = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -42,14 +41,16 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnPredict = new System.Windows.Forms.Button();
+            this.btnLandUsage = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.lblLandUsage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel1.SuspendLayout();
@@ -74,14 +75,6 @@
             this.textBox2.Size = new System.Drawing.Size(154, 21);
             this.textBox2.TabIndex = 14;
             // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(349, 61);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(154, 21);
-            this.txtEmail.TabIndex = 13;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -100,14 +93,14 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "User Name";
             // 
-            // lblEmail
+            // lblNic
             // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(251, 61);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(36, 16);
-            this.lblEmail.TabIndex = 9;
-            this.lblEmail.Text = "Email";
+            this.lblNic.AutoSize = true;
+            this.lblNic.Location = new System.Drawing.Point(251, 61);
+            this.lblNic.Name = "lblNic";
+            this.lblNic.Size = new System.Drawing.Size(27, 16);
+            this.lblNic.TabIndex = 9;
+            this.lblNic.Text = "NIC";
             // 
             // label5
             // 
@@ -198,40 +191,42 @@
             this.button3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.button3.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnPredict
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Cursor = System.Windows.Forms.Cursors.UpArrow;
-            this.button2.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.DarkGreen;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.button2.Location = new System.Drawing.Point(114, 0);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(228, 48);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "Crop Prediction";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnPredict.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPredict.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPredict.Cursor = System.Windows.Forms.Cursors.UpArrow;
+            this.btnPredict.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPredict.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnPredict.Image = ((System.Drawing.Image)(resources.GetObject("btnPredict.Image")));
+            this.btnPredict.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnPredict.Location = new System.Drawing.Point(114, 0);
+            this.btnPredict.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPredict.Name = "btnPredict";
+            this.btnPredict.Size = new System.Drawing.Size(228, 48);
+            this.btnPredict.TabIndex = 24;
+            this.btnPredict.Text = "Crop Prediction";
+            this.btnPredict.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnPredict.UseVisualStyleBackColor = false;
+            this.btnPredict.Click += new System.EventHandler(this.btnPredict_Click);
             // 
-            // button1
+            // btnLandUsage
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.DarkGreen;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.button1.Location = new System.Drawing.Point(145, 4);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(184, 55);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "Used lands";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnLandUsage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLandUsage.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnLandUsage.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLandUsage.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnLandUsage.Image = ((System.Drawing.Image)(resources.GetObject("btnLandUsage.Image")));
+            this.btnLandUsage.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnLandUsage.Location = new System.Drawing.Point(145, 4);
+            this.btnLandUsage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnLandUsage.Name = "btnLandUsage";
+            this.btnLandUsage.Size = new System.Drawing.Size(184, 55);
+            this.btnLandUsage.TabIndex = 23;
+            this.btnLandUsage.Text = "Used lands";
+            this.btnLandUsage.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnLandUsage.UseVisualStyleBackColor = false;
+            this.btnLandUsage.Click += new System.EventHandler(this.btnLandUsage_Click);
             // 
             // saveFileDialog1
             // 
@@ -240,7 +235,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btnPredict);
             this.panel1.Font = new System.Drawing.Font("Microsoft YaHei UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.ForeColor = System.Drawing.Color.DarkGreen;
             this.panel1.Location = new System.Drawing.Point(118, 244);
@@ -261,7 +256,8 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.lblLandUsage);
+            this.panel3.Controls.Add(this.btnLandUsage);
             this.panel3.ForeColor = System.Drawing.Color.DarkGreen;
             this.panel3.Location = new System.Drawing.Point(890, 197);
             this.panel3.Name = "panel3";
@@ -295,12 +291,32 @@
             this.button5.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.button5.UseVisualStyleBackColor = false;
             // 
-            // AdminForm
+            // btnLogout
+            // 
+            this.btnLogout.Location = new System.Drawing.Point(871, 37);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.TabIndex = 32;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // lblLandUsage
+            // 
+            this.lblLandUsage.AutoSize = true;
+            this.lblLandUsage.Location = new System.Drawing.Point(202, 93);
+            this.lblLandUsage.Name = "lblLandUsage";
+            this.lblLandUsage.Size = new System.Drawing.Size(69, 16);
+            this.lblLandUsage.TabIndex = 24;
+            this.lblLandUsage.Text = "Land Usage";
+            // 
+            // OfficerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGreen;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -311,21 +327,21 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.lblNic);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "AdminForm";
+            this.Name = "OfficerForm";
             this.Text = "Farmer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -337,23 +353,24 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblNic;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPredict;
+        private System.Windows.Forms.Button btnLandUsage;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Label lblLandUsage;
     }
 }

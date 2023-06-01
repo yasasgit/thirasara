@@ -8,11 +8,25 @@ namespace ThirasaraTest
     {
         public string emailPattern = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
 
-        public LoginForm()
+        private static LoginForm loginFormInstance;
+
+        private LoginForm()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             txtPassword.UseSystemPasswordChar = true;
+        }
+
+        public static LoginForm Instance
+        {
+            get
+            {
+                if (loginFormInstance == null)
+                {
+                    loginFormInstance = new LoginForm();
+                }
+                return loginFormInstance;
+            }
         }
 
         private void passwordCheck_CheckedChanged(object sender, EventArgs e)
@@ -54,15 +68,15 @@ namespace ThirasaraTest
             {
                 case "officer":
                     MessageBox.Show("Welcome Officer!");
-                    this.Hide();
-                    AdminForm adminForm = new AdminForm();
+                    LoginForm.Instance.Hide();
+                    OfficerForm adminForm = new OfficerForm();
                     adminForm.Show();
                     break;
 
                 case "cultivator":
                     MessageBox.Show("Welcome Cultivator!");
-                    this.Hide();
-                    UserForm userForm = new UserForm();
+                    LoginForm.Instance.Hide();
+                    FarmerForm userForm = new FarmerForm();
                     userForm.Show();
                     break;
 
@@ -72,11 +86,10 @@ namespace ThirasaraTest
             }
         }
 
-        [Obsolete]
-        private void btnRtest_Click(object sender, EventArgs e)
+        private void btnRegister_Click(object sender, EventArgs e)
         {
-            AdvancedAlgorithm mdntest = new AdvancedAlgorithm();
-            mdntest.PerformLinearRegression();
+            var registrationForm = new RegisterForm();
+            registrationForm.ShowDialog();
         }
     }
 }

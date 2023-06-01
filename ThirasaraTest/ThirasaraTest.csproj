@@ -181,17 +181,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvancedAlgorithm.cs" />
-    <Compile Include="UserForm.cs">
+    <Compile Include="FarmerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserForm.designer.cs">
-      <DependentUpon>UserForm.cs</DependentUpon>
+    <Compile Include="FarmerForm.designer.cs">
+      <DependentUpon>FarmerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Farmer.cs">
+    <Compile Include="Hashing.cs" />
+    <Compile Include="PestDiseaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Farmer.designer.cs">
-      <DependentUpon>Farmer.cs</DependentUpon>
+    <Compile Include="PestDiseaseForm.Designer.cs">
+      <DependentUpon>PestDiseaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterForm.designer.cs">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserManagement.cs" />
     <Compile Include="LoginForm.cs">
@@ -200,25 +207,28 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminForm.cs">
+    <Compile Include="OfficerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminForm.designer.cs">
-      <DependentUpon>AdminForm.cs</DependentUpon>
+    <Compile Include="OfficerForm.designer.cs">
+      <DependentUpon>OfficerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="UserForm.resx">
-      <DependentUpon>UserForm.cs</DependentUpon>
+    <EmbeddedResource Include="FarmerForm.resx">
+      <DependentUpon>FarmerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Farmer.resx">
-      <DependentUpon>Farmer.cs</DependentUpon>
+    <EmbeddedResource Include="PestDiseaseForm.resx">
+      <DependentUpon>PestDiseaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterForm.resx">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminForm.resx">
-      <DependentUpon>AdminForm.cs</DependentUpon>
+    <EmbeddedResource Include="OfficerForm.resx">
+      <DependentUpon>OfficerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

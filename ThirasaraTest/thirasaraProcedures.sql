@@ -1,32 +1,45 @@
 -- possible scenarios for procedures
 
 CREATE OR ALTER PROCEDURE GetCropCycleData
-    @email VARCHAR(255)
+    @nic VARCHAR(10)
 AS
 BEGIN
     SELECT 
     crop_cycle_id,
     plant_density_ha,
-    soil_ph,
-    soil_texture_level,
-    (suitable_nitrogen_kg_ha - soil_nitrogen_kg_ha) AS required_nitrogen_kg_ha,
-    (suitable_phosphorus_kg_ha - soil_phosphorus_kg_ha) AS required_phosphorus_kg_ha,
-    (suitable_potassium_kg_ha - soil_potassium_kg_ha) AS required_potassium_kg_ha,
-    other_nutrients_kg_ha,
-    fertilizer_kg_ha,
-    severity_level,
     temperature_c,
     rainfall_irrigation_mm,
     humidity_perc,
     wind_speed_m_s,
     sunlight_exposure_h_day,
+    soil_ph,
+    soil_texture_level,
+    severity_level,
     human_hours_ha,
+    predicted_yield_kg_ha
     yield_kg_ha
  FROM CropCycleAllView
-    WHERE email = @email;
+    WHERE nic = @nic;
 END;
 -- for farmer
-EXEC GetCropCycleData @email = 'email5@example.com';
+EXEC GetCropCycleData @nic = '449683857v';
+
+CREATE OR ALTER PROCEDURE RequiredFertilizer
+    @cropCycleId smallint
+AS
+BEGIN
+    SELECT 
+    crop_cycle_id,
+    (suitable_nitrogen_kg_ha - soil_nitrogen_kg_ha) AS required_nitrogen_kg_ha,
+    (suitable_phosphorus_kg_ha - soil_phosphorus_kg_ha) AS required_phosphorus_kg_ha,
+    (suitable_potassium_kg_ha - soil_potassium_kg_ha) AS required_potassium_kg_ha,
+    other_nutrients_kg_ha,
+    fertilizer_kg_ha
+FROM CropCycleAllView
+    WHERE crop_cycle_id = @cropCycleId;
+END;
+-- for farmer
+EXEC RequiredFertilizer @cropCycleId = 1000;
 
 
 
