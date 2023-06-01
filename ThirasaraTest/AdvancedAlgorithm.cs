@@ -2,6 +2,7 @@
 using Accord.Math;
 using Accord.Math.Optimization.Losses;
 using Accord.Statistics.Models.Regression.Linear;
+using CsvHelper;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,40 +21,9 @@ public class AdvancedAlgorithm
         {
             conn.Open();
             var crop_cycle_id = 1003;
-            var train_query = $@"SELECT cc.crop_cycle_id, cc.plant_density_ha, fd.soil_ph, std.soil_texture_level,
-                        (fd.soil_nitrogen_kg_ha + fert.fertilizer_nitrogen_kg_ha) AS nitrogen_kg_ha,
-                        (fd.soil_phosphorus_kg_ha + fert.fertilizer_phosphorus_kg_ha) AS phosphorus_kg_ha,
-                        (fd.soil_potassium_kg_ha + fert.fertilizer_potassium_kg_ha) AS potassium_kg_ha,
-                        fert.other_nutrients_kg_ha, fd.fertilizer_kg_ha, pd.severity_level,
-                        ed.temperature_c, ed.rainfall_irrigation_mm, ed.humidity_perc, ed.wind_speed_m_s,
-                        ed.sunlight_exposure_h_day, cc.human_hours_ha, cc.yield_kg_ha
-                    FROM crop_cycle_data AS cc
-                    JOIN environment_data AS ed ON cc.environment = ed.environment_data_id
-                    JOIN field_data AS fd ON ed.field = fd.field_id
-                    JOIN fertilizer_data AS fert ON fd.fertilizer = fert.fertilizer_id
-                    JOIN pest_disease_data AS pd ON cc.pest_disease = pd.pest_disease_id
-                    JOIN soil_texture_data AS std ON fd.soil_texture = std.soil_texture_id
-                    WHERE cc.yield_kg_ha IS NOT NULL AND cc.crop = (SELECT crop FROM crop_cycle_data WHERE crop_cycle_id = {crop_cycle_id})
-                    ORDER BY crop_cycle_id";
             var train_df = new DataTable();
-            using (var adapter = new SqlDataAdapter(train_query, conn))
-            {
-                adapter.Fill(train_df);
-            }
-            var test_query = $@"SELECT cc.crop_cycle_id, cc.plant_density_ha, fd.soil_ph, std.soil_texture_level,
-                        (fd.soil_nitrogen_kg_ha + fert.fertilizer_nitrogen_kg_ha) AS nitrogen_kg_ha,
-                        (fd.soil_phosphorus_kg_ha + fert.fertilizer_phosphorus_kg_ha) AS phosphorus_kg_ha,
-                        (fd.soil_potassium_kg_ha + fert.fertilizer_potassium_kg_ha) AS potassium_kg_ha,
-                        fert.other_nutrients_kg_ha, fd.fertilizer_kg_ha, pd.severity_level,
-                        ed.temperature_c, ed.rainfall_irrigation_mm, ed.humidity_perc, ed.wind_speed_m_s,
-                        ed.sunlight_exposure_h_day, cc.human_hours_ha, cc.yield_kg_ha
-                    FROM crop_cycle_data AS cc
-                    JOIN environment_data AS ed ON cc.environment = ed.environment_data_id
-                    JOIN field_data AS fd ON ed.field = fd.field_id
-                    JOIN fertilizer_data AS fert ON fd.fertilizer = fert.fertilizer_id
-                    JOIN pest_disease_data AS pd ON cc.pest_disease = pd.pest_disease_id
-                    JOIN soil_texture_data AS std ON fd.soil_texture = std.soil_texture_id
-                    WHERE crop_cycle_id = {crop_cycle_id}";
+            train_df = new CsvReader("path/to/your/file.csv").ToTable();
+            var test_query = $@" = {crop_cycle_id}";
             var test_df = new DataTable();
             using (var adapter = new SqlDataAdapter(test_query, conn))
             {

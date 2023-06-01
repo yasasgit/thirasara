@@ -10,7 +10,7 @@ namespace ThirasaraTest
     {
         private SqlConnection connection;
         string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
-        
+
         public FarmerForm()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace ThirasaraTest
         {
             DataTable dataTable = new DataTable();
             connection = new SqlConnection(connectionString);
-            string storedProcedure = "GetCropCycleData";
+            string storedProcedure = "GetFieldData";
             using (SqlCommand command = new SqlCommand(storedProcedure, connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
@@ -32,28 +32,42 @@ namespace ThirasaraTest
                     adapter.Fill(dataTable);
                 }
             }
-            cropCycleDataGridView.DataSource = dataTable;
+            fieldDataGridView.DataSource = dataTable;
         }
 
-        private void btnPnD_Click(object sender, System.EventArgs e)
+        private void fieldDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            var pdForm = new PestDiseaseForm();
-            pdForm.ShowDialog();
-        }
 
-        private void btnLogout_Click(object sender, System.EventArgs e)
-        {
-            UserManagement.Instance.UserNic = null;
-            LoginForm.Instance.Show();
-            this.Close();
+            DataTable dataTable = new DataTable();
+            if (fieldDataGridView.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = fieldDataGridView.SelectedRows[0];
+                int fieldId = Convert.ToInt32(selectedRow.Cells["field_id"].Value);
+                dataTable.Clear();
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string storedProcedure = "GetEnvironmentData";
+                    using (SqlCommand command = new SqlCommand(storedProcedure, connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@fieldId", fieldId);
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                    }
+                }
+                environmentDataGridView.DataSource = dataTable;
+            }
         }
 
         private void CropCycleDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             DataTable dataTable = new DataTable();
-            if (cropCycleDataGridView.SelectedRows.Count > 0)
+            if (fieldDataGridView.SelectedRows.Count > 0)
             {
-                DataGridViewRow selectedRow = cropCycleDataGridView.SelectedRows[0];
+                DataGridViewRow selectedRow = fieldDataGridView.SelectedRows[0];
                 int cropCycleId = Convert.ToInt32(selectedRow.Cells["crop_cycle_id"].Value);
                 dataTable.Clear();
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -74,5 +88,27 @@ namespace ThirasaraTest
             }
         }
 
+        private void btnPnD_Click(object sender, System.EventArgs e)
+        {
+            var pdForm = new PestDiseaseForm();
+            pdForm.ShowDialog();
+        }
+
+        private void btnLogout_Click(object sender, System.EventArgs e)
+        {
+            UserManagement.Instance.UserNic = null;
+            LoginForm.Instance.Show();
+            this.Close();
+        }
+
+        private void btnAddField_Click(object sender, EventArgs e)
+        {
+            var afForm = new AddFieldForm();
+            afForm.ShowDialog();
+        }
+
+        private void environmentDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+        }
     }
 }

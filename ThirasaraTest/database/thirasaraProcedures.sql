@@ -1,4 +1,41 @@
 -- possible scenarios for procedures
+CREATE OR ALTER PROCEDURE GetFieldData
+    @nic VARCHAR(10)
+AS
+BEGIN
+    SELECT 
+    field_id ,
+    size_ha,
+    field_location,
+    soil_nitrogen_kg_ha,
+    soil_phosphorus_kg_ha,
+    soil_potassium_kg_ha,
+	soil_ph,
+    soil_texture
+FROM field_data
+    WHERE cultivator = @nic;
+END;
+-- for farmer
+EXEC GetFieldData @nic = '449683857v';
+
+CREATE OR ALTER PROCEDURE GetEnvironmentData
+    @fieldId VARCHAR(10)
+AS
+BEGIN
+    SELECT 
+    environment_data_id,
+    temperature_c,
+    rainfall_irrigation_mm,
+    humidity_perc,
+    wind_speed_m_s,
+    sunlight_exposure_h_day,
+	update_date
+FROM environment_data
+    WHERE field = @fieldId;
+END;
+-- for farmer
+EXEC GetEnvironmentData @fieldId = '449683857v';
+
 
 CREATE OR ALTER PROCEDURE GetCropCycleData
     @nic VARCHAR(10)

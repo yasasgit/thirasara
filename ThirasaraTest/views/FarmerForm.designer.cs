@@ -39,14 +39,22 @@
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.cropCycleDataGridView = new System.Windows.Forms.DataGridView();
+            this.fieldDataGridView = new System.Windows.Forms.DataGridView();
             this.btnPnD = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.fertilizerDataGridView = new System.Windows.Forms.DataGridView();
+            this.btnAddField = new System.Windows.Forms.Button();
+            this.cropCyleDataGridView = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.environmentDataGridView = new System.Windows.Forms.DataGridView();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cropCycleDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fieldDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fertilizerDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cropCyleDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.environmentDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox3
@@ -121,11 +129,11 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Navy;
-            this.label7.Location = new System.Drawing.Point(77, 184);
+            this.label7.Location = new System.Drawing.Point(51, 183);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(129, 25);
+            this.label7.Size = new System.Drawing.Size(99, 25);
             this.label7.TabIndex = 19;
-            this.label7.Text = "_____________";
+            this.label7.Text = "My Fields";
             // 
             // pictureBox1
             // 
@@ -149,21 +157,20 @@
             this.pictureBox3.TabIndex = 22;
             this.pictureBox3.TabStop = false;
             // 
-            // cropCycleDataGridView
+            // fieldDataGridView
             // 
-            this.cropCycleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.cropCycleDataGridView.Location = new System.Drawing.Point(47, 225);
-            this.cropCycleDataGridView.Name = "cropCycleDataGridView";
-            this.cropCycleDataGridView.Size = new System.Drawing.Size(621, 409);
-            this.cropCycleDataGridView.TabIndex = 23;
-            this.cropCycleDataGridView.SelectionChanged += CropCycleDataGridView_SelectionChanged;
-
+            this.fieldDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.fieldDataGridView.Location = new System.Drawing.Point(28, 225);
+            this.fieldDataGridView.Name = "fieldDataGridView";
+            this.fieldDataGridView.Size = new System.Drawing.Size(392, 210);
+            this.fieldDataGridView.TabIndex = 23;
+            this.fieldDataGridView.SelectionChanged += new System.EventHandler(this.fieldDataGridView_SelectionChanged);
             // 
             // btnPnD
             // 
-            this.btnPnD.Location = new System.Drawing.Point(853, 661);
+            this.btnPnD.Location = new System.Drawing.Point(1162, 457);
             this.btnPnD.Name = "btnPnD";
-            this.btnPnD.Size = new System.Drawing.Size(85, 56);
+            this.btnPnD.Size = new System.Drawing.Size(147, 30);
             this.btnPnD.TabIndex = 24;
             this.btnPnD.Text = "Vulnerable Crops";
             this.btnPnD.UseVisualStyleBackColor = true;
@@ -182,10 +189,70 @@
             // fertilizerDataGridView
             // 
             this.fertilizerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.fertilizerDataGridView.Location = new System.Drawing.Point(853, 225);
+            this.fertilizerDataGridView.Location = new System.Drawing.Point(882, 225);
             this.fertilizerDataGridView.Name = "fertilizerDataGridView";
-            this.fertilizerDataGridView.Size = new System.Drawing.Size(437, 334);
+            this.fertilizerDataGridView.Size = new System.Drawing.Size(406, 210);
             this.fertilizerDataGridView.TabIndex = 26;
+            // 
+            // btnAddField
+            // 
+            this.btnAddField.Location = new System.Drawing.Point(345, 457);
+            this.btnAddField.Name = "btnAddField";
+            this.btnAddField.Size = new System.Drawing.Size(75, 23);
+            this.btnAddField.TabIndex = 27;
+            this.btnAddField.Text = "Add Field";
+            this.btnAddField.UseVisualStyleBackColor = true;
+            this.btnAddField.Click += new System.EventHandler(this.btnAddField_Click);
+            // 
+            // cropCyleDataGridView
+            // 
+            this.cropCyleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cropCyleDataGridView.Location = new System.Drawing.Point(28, 507);
+            this.cropCyleDataGridView.Name = "cropCyleDataGridView";
+            this.cropCyleDataGridView.Size = new System.Drawing.Size(1281, 210);
+            this.cropCyleDataGridView.TabIndex = 28;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(464, 183);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 25);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "My Env";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Navy;
+            this.label3.Location = new System.Drawing.Point(51, 462);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 25);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "My Crops";
+            // 
+            // environmentDataGridView
+            // 
+            this.environmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.environmentDataGridView.Location = new System.Drawing.Point(447, 225);
+            this.environmentDataGridView.Name = "environmentDataGridView";
+            this.environmentDataGridView.Size = new System.Drawing.Size(408, 210);
+            this.environmentDataGridView.TabIndex = 31;
+            this.environmentDataGridView.SelectionChanged += new System.EventHandler(this.environmentDataGridView_SelectionChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Navy;
+            this.label8.Location = new System.Drawing.Point(911, 183);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(89, 25);
+            this.label8.TabIndex = 32;
+            this.label8.Text = "Fertilizer";
             // 
             // FarmerForm
             // 
@@ -193,10 +260,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGreen;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.environmentDataGridView);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cropCyleDataGridView);
+            this.Controls.Add(this.btnAddField);
             this.Controls.Add(this.fertilizerDataGridView);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnPnD);
-            this.Controls.Add(this.cropCycleDataGridView);
+            this.Controls.Add(this.fieldDataGridView);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -214,8 +287,10 @@
             this.Load += new System.EventHandler(this.UserForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cropCycleDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fieldDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fertilizerDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cropCyleDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.environmentDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,9 +308,15 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.DataGridView cropCycleDataGridView;
+        private System.Windows.Forms.DataGridView fieldDataGridView;
         private System.Windows.Forms.Button btnPnD;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.DataGridView fertilizerDataGridView;
+        private System.Windows.Forms.Button btnAddField;
+        private System.Windows.Forms.DataGridView cropCyleDataGridView;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView environmentDataGridView;
+        private System.Windows.Forms.Label label8;
     }
 }
