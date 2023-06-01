@@ -1,19 +1,19 @@
-# Agriculture Management System
+# Thirasara
 
-This repository contains an Agriculture Management System that aims to assist both agricultural offices/officers and farmers in managing their agricultural activities effectively. The system provides various capabilities and features to enhance decision-making processes and optimize crop production.
+This repository contains an Agriculture Management System that aims to assist both agricultural officers and farmers in managing their agricultural activities effectively. The system provides various capabilities and features to enhance decision-making processes and optimize crop production.
 
 ## User Capabilities
 
-### Agricultural Office/Officer
+### Agricultural Officer
 
-As an agricultural office or officer, the system offers the following capabilities:
+The system offers the following capabilities for agricultural officers:
 
 1. **Crop Prediction**: Utilize advanced algorithms to predict crop yields based on historical data and environmental factors.
 2. **Total Land Usage**: Track and manage the total land usage in the area to ensure efficient utilization of agricultural resources.
-3. **Top 3 or 5 Diseases in the Area**: Identify and monitor the top 3 or 5 prevalent diseases in the region to take necessary preventive measures.
-4. **Top 3 Crops (Rice)**: Analyze and provide insights on the top 3 rice crops suitable for the specific area.
+3. **Top Diseases in the Area**: Identify and monitor the top prevalent diseases in the region to take necessary preventive measures.
+4. **Top Crops (Rice)**: Analyze and provide insights on the top rice crops suitable for the specific area.
 
-Nice-to-have functions for agricultural offices/officers:
+Additional functions for agricultural officers:
 
 1. **Weather Data**: Access real-time weather data to make informed decisions and adjust agricultural strategies accordingly.
 2. **Market Information**: Provide market-related information such as crop prices and demand, enabling better decision-making for farmers.
@@ -22,13 +22,13 @@ Nice-to-have functions for agricultural offices/officers:
 
 ### Farmer
 
-As a farmer, the system provides the following capabilities:
+The system provides the following capabilities for farmers:
 
 1. **Registration**: Register as a farmer to access personalized features and services.
 2. **Land Information**: Enter land size, location, and other relevant data to keep track of individual farming activities.
 3. **Disease Reporting**: Submit information about diseases affecting crops for prompt assistance and appropriate solutions.
 
-Nice-to-have functions for farmers:
+Additional functions for farmers:
 
 1. **Crop Prediction**: Receive crop prediction insights for informed decision-making regarding crop selection and planning based on land conditions.
 2. **Weather Data**: Access weather forecasts and historical data to optimize farming activities, such as irrigation and planting schedules.
@@ -36,15 +36,11 @@ Nice-to-have functions for farmers:
 
 ## Getting Started
 
-To get started with the Agriculture Management System, please follow the installation instructions and refer to the documentation provided in the respective folders for agricultural offices/officers and farmers.
+To get started with the Agriculture Management System, please follow the installation instructions and refer to the documentation provided in the respective folders for agricultural officers and farmers.
 
 ## Contributing
 
 Contributions to the Agriculture Management System are welcome! If you have any ideas, suggestions, or bug reports, please submit them via the issue tracker. Additionally, pull requests for new features and improvements are highly appreciated.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE). Feel free to modify and use the code according to the terms of the license.
 
 ## Acknowledgements
 
