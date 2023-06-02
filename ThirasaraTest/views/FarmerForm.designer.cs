@@ -211,6 +211,7 @@
             this.cropCyleDataGridView.Name = "cropCyleDataGridView";
             this.cropCyleDataGridView.Size = new System.Drawing.Size(1281, 210);
             this.cropCyleDataGridView.TabIndex = 28;
+            this.cropCyleDataGridView.SelectionChanged += new System.EventHandler(this.cropCyleDataGridView_SelectionChanged);
             // 
             // label1
             // 
@@ -241,7 +242,6 @@
             this.environmentDataGridView.Name = "environmentDataGridView";
             this.environmentDataGridView.Size = new System.Drawing.Size(408, 210);
             this.environmentDataGridView.TabIndex = 31;
-            this.environmentDataGridView.SelectionChanged += new System.EventHandler(this.environmentDataGridView_SelectionChanged);
             // 
             // label8
             // 

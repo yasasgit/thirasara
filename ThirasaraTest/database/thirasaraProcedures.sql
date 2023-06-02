@@ -1,4 +1,5 @@
 -- possible scenarios for procedures
+-- load field data for farmer
 CREATE OR ALTER PROCEDURE GetFieldData
     @nic VARCHAR(10)
 AS
@@ -18,12 +19,31 @@ END;
 -- for farmer
 EXEC GetFieldData @nic = '449683857v';
 
-CREATE OR ALTER PROCEDURE GetEnvironmentData
+-- load crop cycle data for farmer
+CREATE OR ALTER PROCEDURE GetCropCycleData
     @fieldId VARCHAR(10)
 AS
 BEGIN
     SELECT 
-    environment_data_id,
+    crop_cycle_id,
+    plant_density_ha,
+    human_hours_ha,
+    predicted_yield_kg_ha,
+    yield_kg_ha,
+    planted_date,
+    harvest_date
+ FROM crop_cycle_data
+    WHERE field = @fieldId;
+END;
+-- for farmer
+EXEC GetCropCycleData @fieldId = '449683857v';
+
+-- load environment data for farmer
+CREATE OR ALTER PROCEDURE GetEnvironmentData
+    @cropCycleId VARCHAR(10)
+AS
+BEGIN
+    SELECT 
     temperature_c,
     rainfall_irrigation_mm,
     humidity_perc,
@@ -31,48 +51,27 @@ BEGIN
     sunlight_exposure_h_day,
 	update_date
 FROM environment_data
-    WHERE field = @fieldId;
+    WHERE crop_cycle = @cropCycleId
 END;
 -- for farmer
-EXEC GetEnvironmentData @fieldId = '449683857v';
+EXEC GetEnvironmentData @cropCycleId = '449683857v';
 
 
-CREATE OR ALTER PROCEDURE GetCropCycleData
-    @nic VARCHAR(10)
-AS
-BEGIN
-    SELECT 
-    crop_cycle_id,
-    plant_density_ha,
-    temperature_c,
-    rainfall_irrigation_mm,
-    humidity_perc,
-    wind_speed_m_s,
-    sunlight_exposure_h_day,
-    soil_ph,
-    soil_texture_level,
-    severity_level,
-    human_hours_ha,
-    predicted_yield_kg_ha
-    yield_kg_ha
- FROM CropCycleAllView
-    WHERE nic = @nic;
-END;
--- for farmer
-EXEC GetCropCycleData @nic = '449683857v';
-
+-- load environment data for farmer
 CREATE OR ALTER PROCEDURE RequiredFertilizer
     @cropCycleId smallint
 AS
 BEGIN
     SELECT 
-    crop_cycle_id,
     (suitable_nitrogen_kg_ha - soil_nitrogen_kg_ha) AS required_nitrogen_kg_ha,
     (suitable_phosphorus_kg_ha - soil_phosphorus_kg_ha) AS required_phosphorus_kg_ha,
     (suitable_potassium_kg_ha - soil_potassium_kg_ha) AS required_potassium_kg_ha,
     other_nutrients_kg_ha,
     fertilizer_kg_ha
-FROM CropCycleAllView
+FROM crop_cycle_data AS ccd 
+JOIN field_data AS fd ON ccd.field = fd.field_id
+JOIN crop_data AS cd ON ccd.crop = cd.crop_id 
+JOIN fertilizer_data AS fert ON ccd.fertilizer = fert.fertilizer_id 
     WHERE crop_cycle_id = @cropCycleId;
 END;
 -- for farmer
