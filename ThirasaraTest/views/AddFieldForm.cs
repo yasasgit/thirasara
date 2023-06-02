@@ -17,13 +17,13 @@ namespace ThirasaraTest
         {
             try
             {
-                decimal sizeHa = Convert.ToDecimal(sizeHaTextBox.Text);
+                decimal sizeHa = decimal.Parse(sizeHaTextBox.Text);
                 string fieldLocation = fieldLocationTextBox.Text;
-                byte soilNitrogen = Convert.ToByte(soilNitrogenTextBox.Text);
-                byte soilPhosphorus = Convert.ToByte(soilPhosphorusTextBox.Text);
-                byte soilPotassium = Convert.ToByte(soilPotassiumTextBox.Text);
-                decimal soilPh = Convert.ToDecimal(soilPhTextBox.Text);
-                short soilTexture = Convert.ToInt16(txtSoilTexture);
+                byte soilNitrogen = byte.Parse(soilNitrogenTextBox.Text);
+                byte soilPhosphorus = byte.Parse(soilPhosphorusTextBox.Text);
+                byte soilPotassium = byte.Parse(soilPotassiumTextBox.Text);
+                decimal soilPh = decimal.Parse(soilPhTextBox.Text);
+                short soilTexture = short.Parse(txtSoilTexture.Text);
 
                 Console.Out.WriteLine(soilTexture);
 

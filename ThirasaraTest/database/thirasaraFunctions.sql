@@ -1,5 +1,5 @@
 -- possible scenarios for functions
-CREATE FUNCTION dbo.GetTotalLandUsage()
+CREATE OR ALTER FUNCTION GetTotalLandUsage()
 RETURNS DECIMAL(10, 2)
 AS
 BEGIN

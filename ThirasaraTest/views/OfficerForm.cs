@@ -22,13 +22,14 @@ namespace ThirasaraTest
             this.Close();
         }
 
+        [System.Obsolete]
         private void btnPredict_Click(object sender, System.EventArgs e)
         {
             AdvancedAlgorithm mdntest = new AdvancedAlgorithm();
             mdntest.PerformLinearRegression();
         }
 
-        private void btnLandUsage_Click(object sender, System.EventArgs e)
+        private void OfficerForm_Load(object sender, System.EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

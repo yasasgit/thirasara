@@ -1,8 +1,8 @@
-﻿using Accord.MachineLearning.Rules;
+﻿using Accord.IO;
+using Accord.MachineLearning.Rules;
 using Accord.Math;
 using Accord.Math.Optimization.Losses;
 using Accord.Statistics.Models.Regression.Linear;
-using CsvHelper;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,77 +17,68 @@ public class AdvancedAlgorithm
     [Obsolete]
     public void PerformLinearRegression()
     {
-        using (var conn = new SqlConnection(connectionString))
-        {
-            conn.Open();
-            var crop_cycle_id = 1003;
-            var train_df = new DataTable();
-            train_df = new CsvReader("path/to/your/file.csv").ToTable();
-            var test_query = $@" = {crop_cycle_id}";
-            var test_df = new DataTable();
-            using (var adapter = new SqlDataAdapter(test_query, conn))
-            {
-                adapter.Fill(test_df);
-            }
-            var inputs = new double[train_df.Rows.Count][];
-            var outputs = new double[train_df.Rows.Count];
-            double[][] input =
-                {
-                new double[] { 1, 1 },
-                new double[] { 0, 1 },
-                new double[] { 1, 0 },
-                new double[] { 0, 0 },
-            };
-            double[] output = { 1, 1, 1, 1 };
-            for (var i = 0; i < train_df.Rows.Count; i++)
-            {
-                var row = train_df.Rows[i];
-                inputs[i] = new double[]
-                {
-                    Convert.ToDouble(row["plant_density_ha"]),
-                    Convert.ToDouble(row["soil_ph"]),
-                    Convert.ToDouble(row["soil_texture_level"]),
-                    Convert.ToDouble(row["nitrogen_kg_ha"]),
-                    Convert.ToDouble(row["phosphorus_kg_ha"]),
-                    Convert.ToDouble(row["potassium_kg_ha"]),
-                    Convert.ToDouble(row["other_nutrients_kg_ha"]),
-                    Convert.ToDouble(row["fertilizer_kg_ha"]),
-                    Convert.ToDouble(row["severity_level"]),
-                    Convert.ToDouble(row["temperature_c"]),
-                    Convert.ToDouble(row["rainfall_irrigation_mm"]),
-                    Convert.ToDouble(row["humidity_perc"]),
-                    Convert.ToDouble(row["wind_speed_m_s"]),
-                    Convert.ToDouble(row["sunlight_exposure_h_day"]),
-                    Convert.ToDouble(row["human_hours_ha"])
-                };
-                outputs[i] = Convert.ToDouble(row["yield_kg_ha"]);
-            }
+            var crop_cycle_id = 1000;
+            var reader = new CsvReader("model/train_data.csv", hasHeaders: true);
             var ols = new OrdinaryLeastSquares()
             {
                 UseIntercept = true
             };
+
+            List<string[]> contentList = reader.ReadToEnd();
+            string[][] contents = contentList.ToArray();
+
+            List<double[]> firstList = new List<double[]>();
+            foreach (var row in contents)
+            {
+                double[] firstValues = row.Take(9).Select(Double.Parse).ToArray();
+                firstList.Add(firstValues);
+            }
+            double[][] inputs = firstList.ToArray();
+
+            List<double> secondList = new List<double>();
+            foreach (var row in contents)
+            {
+                string secondValue = row[9];
+                double parsedValue = double.Parse(secondValue);
+                secondList.Add(parsedValue);
+            }
+            double[] outputs = secondList.ToArray();
+
             MultipleLinearRegression regression = ols.Learn(inputs, outputs);
-            double a = regression.Weights[0]; // a = 0
-            double b = regression.Weights[1]; // b = 0
-            double c = regression.Intercept;  // c = 1
+            double a = regression.Weights[0];
+            double b = regression.Weights[1];
+            double c = regression.Intercept;
             double[] predicted = regression.Transform(inputs);
             double error = new SquareLoss(outputs).Loss(predicted);
-            double r2 = new RSquaredLoss(numberOfInputs: inputs[0].Length, expected: outputs).Loss(predicted);
-            var r2loss = new RSquaredLoss(numberOfInputs: inputs[0].Length, expected: outputs)
+            double r2 = new RSquaredLoss(numberOfInputs: 2, expected: outputs).Loss(predicted);
+            var r2loss = new RSquaredLoss(numberOfInputs: 2, expected: outputs)
             {
-                Adjust = true
+                Adjust = true,
             };
-            double ar2 = r2loss.Loss(predicted); // should be 1
-            double ur2 = regression.CoefficientOfDetermination(inputs, outputs, adjust: true); // should be 1
-            var predictedValue = regression.Transform(test_df.Rows[0].ItemArray.Skip(1).Select(x => Convert.ToDouble(x)).ToArray());
-            var update_query = $"UPDATE crop_cycle_data SET predicted_yield_kg_ha = {predictedValue} WHERE crop_cycle_id = {crop_cycle_id}";
-            using (var command = new SqlCommand(update_query, conn))
+            double ar2 = r2loss.Loss(predicted);
+            double ur2 = regression.CoefficientOfDetermination(inputs, outputs, adjust: true);
+
+        //testing
+        using (var conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+            var testReader = new CsvReader("model/test_data.csv", hasHeaders: true);
+            List<string[]> testContentList = testReader.ReadToEnd();
+            string[][] testContents = testContentList.ToArray();
+            List<double[]> testInputs = new List<double[]>();
+            foreach (var row in testContents)
             {
-                command.ExecuteNonQuery();
+                double[] testValues = row.Take(9).Select(Double.Parse).ToArray();
+                testInputs.Add(testValues);
+            }
+            double[] prediction = regression.Transform(testInputs.ToArray());
+            Console.WriteLine("Predicted values:");
+            foreach (var value in prediction)
+            {
+                Console.WriteLine(value);
             }
             conn.Close();
         }
-
     }
 
     public string PerformAprioriAnalysis()

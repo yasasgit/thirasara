@@ -42,20 +42,18 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnPredict = new System.Windows.Forms.Button();
-            this.btnLandUsage = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.btnLandUsage = new System.Windows.Forms.Button();
             this.lblLandUsage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -210,24 +208,6 @@
             this.btnPredict.UseVisualStyleBackColor = false;
             this.btnPredict.Click += new System.EventHandler(this.btnPredict_Click);
             // 
-            // btnLandUsage
-            // 
-            this.btnLandUsage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLandUsage.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnLandUsage.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLandUsage.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnLandUsage.Image = ((System.Drawing.Image)(resources.GetObject("btnLandUsage.Image")));
-            this.btnLandUsage.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnLandUsage.Location = new System.Drawing.Point(145, 4);
-            this.btnLandUsage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnLandUsage.Name = "btnLandUsage";
-            this.btnLandUsage.Size = new System.Drawing.Size(184, 55);
-            this.btnLandUsage.TabIndex = 23;
-            this.btnLandUsage.Text = "Used lands";
-            this.btnLandUsage.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnLandUsage.UseVisualStyleBackColor = false;
-            this.btnLandUsage.Click += new System.EventHandler(this.btnLandUsage_Click);
-            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.FileName = ",";
@@ -252,17 +232,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(484, 213);
             this.panel2.TabIndex = 29;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel3.Controls.Add(this.lblLandUsage);
-            this.panel3.Controls.Add(this.btnLandUsage);
-            this.panel3.ForeColor = System.Drawing.Color.DarkGreen;
-            this.panel3.Location = new System.Drawing.Point(890, 197);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(442, 155);
-            this.panel3.TabIndex = 30;
             // 
             // panel4
             // 
@@ -301,10 +270,28 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // btnLandUsage
+            // 
+            this.btnLandUsage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLandUsage.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnLandUsage.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLandUsage.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnLandUsage.Image = ((System.Drawing.Image)(resources.GetObject("btnLandUsage.Image")));
+            this.btnLandUsage.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnLandUsage.Location = new System.Drawing.Point(1020, 185);
+            this.btnLandUsage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnLandUsage.Name = "btnLandUsage";
+            this.btnLandUsage.Size = new System.Drawing.Size(184, 55);
+            this.btnLandUsage.TabIndex = 23;
+            this.btnLandUsage.Text = "Used lands";
+            this.btnLandUsage.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnLandUsage.UseVisualStyleBackColor = false;
+            // 
             // lblLandUsage
             // 
             this.lblLandUsage.AutoSize = true;
-            this.lblLandUsage.Location = new System.Drawing.Point(202, 93);
+            this.lblLandUsage.BackColor = System.Drawing.Color.Transparent;
+            this.lblLandUsage.Location = new System.Drawing.Point(1124, 214);
             this.lblLandUsage.Name = "lblLandUsage";
             this.lblLandUsage.Size = new System.Drawing.Size(69, 16);
             this.lblLandUsage.TabIndex = 24;
@@ -316,9 +303,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGreen;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.lblLandUsage);
             this.Controls.Add(this.btnLogout);
+            this.Controls.Add(this.btnLandUsage);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button4);
@@ -336,12 +324,11 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "OfficerForm";
             this.Text = "Farmer";
+            this.Load += new System.EventHandler(this.OfficerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -363,14 +350,13 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnPredict;
-        private System.Windows.Forms.Button btnLandUsage;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnLandUsage;
         private System.Windows.Forms.Label lblLandUsage;
     }
 }
