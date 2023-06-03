@@ -1,60 +1,58 @@
 -- possible scenarios for triggers
 
-CREATE TRIGGER trg_environment_data_range_validation
-BEFORE INSERT OR UPDATE ON environment_data
-FOR EACH ROW
+-- Create a trigger to enforce the planted_date < harvest_date constraint
+CREATE TRIGGER check_planted_harvest_dates
+ON crop_cycle_data
+AFTER INSERT, UPDATE
+AS
 BEGIN
-    IF NEW.temperature_c < -50 OR NEW.temperature_c > 50 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid temperature range';
-    END IF;
-
-    IF NEW.rainfall_irrigation_mm < 0 OR NEW.rainfall_irrigation_mm > 1000 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid rainfall/irrigation range';
-    END IF;
-
-    IF NEW.humidity_perc < 0 OR NEW.humidity_perc > 100 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid humidity range';
-    END IF;
-
-    IF NEW.wind_speed_m_s < 0 OR NEW.wind_speed_m_s > 30 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid wind speed range';
-    END IF;
-
-    IF NEW.sunlight_exposure_h_day < 0 OR NEW.sunlight_exposure_h_day > 24 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid sunlight exposure range';
-    END IF;
+    IF EXISTS (
+        SELECT 1
+        FROM inserted
+        WHERE planted_date >= harvest_date
+    )
+    BEGIN
+        RAISERROR ('Planted date must be earlier than harvest date', 16, 1);
+        ROLLBACK TRANSACTION;
+        RETURN;
+    END
 END;
 
-CREATE TRIGGER trg_crop_cycle_data_range_validation
-BEFORE INSERT OR UPDATE ON crop_cycle_data
-FOR EACH ROW
+-- calculates the mean values based on the latest record and updates the most recent record with the calculated mean 
+CREATE TRIGGER calculate_mean_values
+ON environment_data
+AFTER INSERT
+AS
 BEGIN
-    IF NEW.plant_density_ha < 0 OR NEW.plant_density_ha > 100000 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid plant density range';
-    END IF;
+    DECLARE @crop_cycle_id SMALLINT;
+    DECLARE @mean_temperature DECIMAL(10, 2);
+    DECLARE @mean_rainfall SMALLINT;
+    DECLARE @mean_humidity INT;
+    DECLARE @mean_wind_speed DECIMAL(10, 2);
+    DECLARE @mean_sunlight DECIMAL(10, 2);
 
-    IF NEW.human_hours_ha < 0 OR NEW.human_hours_ha > 1000 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid human hours range';
-    END IF;
+    SELECT @crop_cycle_id = crop_cycle
+    FROM inserted;
 
-    IF NEW.predicted_yield_kg_ha < 0 OR NEW.predicted_yield_kg_ha > 100000 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid predicted yield range';
-    END IF;
+    SELECT @mean_temperature = AVG(temperature_c),
+           @mean_rainfall = AVG(rainfall_irrigation_mm),
+           @mean_humidity = AVG(humidity_perc),
+           @mean_wind_speed = AVG(wind_speed_m_s),
+           @mean_sunlight = AVG(sunlight_exposure_h_day)
+    FROM environment_data
+    WHERE crop_cycle = @crop_cycle_id;
 
-    IF NEW.yield_kg_ha < 0 OR NEW.yield_kg_ha > 100000 THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid yield range';
-    END IF;
+    UPDATE environment_data
+    SET temperature_c = @mean_temperature,
+        rainfall_irrigation_mm = @mean_rainfall,
+        humidity_perc = @mean_humidity,
+        wind_speed_m_s = @mean_wind_speed,
+        sunlight_exposure_h_day = @mean_sunlight
+    WHERE environment_data_id = (SELECT MAX(environment_data_id) FROM environment_data WHERE crop_cycle = @crop_cycle_id);
+
 END;
 
--- update - calculate average + prediction
-CREATE TRIGGER update_values_trigger
-BEFORE INSERT ON your_table
-FOR EACH ROW
-BEGIN
-  SET NEW.column_name = (SELECT column_name FROM your_table WHERE primary_key = NEW.primary_key) + NEW.column_name;
-END;
-
-
+-- trigger to run R code inside sql (not used)
 CREATE OR ALTER TRIGGER update_crop_cycle_predictions
 ON crop_cycle_data
 AFTER UPDATE
@@ -77,7 +75,7 @@ BEGIN
 END;
 END;
 
-
+-- does prediction using R code (not used)
 CREATE OR ALTER TRIGGER update_crop_cycle_predictions
 ON crop_cycle_data
 AFTER UPDATE

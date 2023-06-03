@@ -79,7 +79,7 @@ EXEC RequiredFertilizer @cropCycleId = 1000;
 
 
 
--- Inserts Random Data for Prototype
+-- Inserts Random Data for Prototype (not used)
 CREATE OR ALTER PROCEDURE InsertTainData
 AS
 BEGIN
