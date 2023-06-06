@@ -55,5 +55,15 @@ namespace ThirasaraTest
             }
             this.Close();
         }
+
+        private void sizeHaTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddFieldForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
