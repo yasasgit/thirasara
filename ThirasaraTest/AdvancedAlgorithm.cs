@@ -86,10 +86,8 @@ public class AdvancedAlgorithm
             {
                 Console.WriteLine(value);
             }
-
             conn.Close();
         }
-
     }
 
     public string PerformAprioriAnalysis()
@@ -157,7 +155,6 @@ public class AdvancedAlgorithm
                         var consequent = string.Join(", ", rule.Y);
                         sb.AppendLine($"[{antecedent}] -> [{consequent}]; support: {rule.Support}, confidence: {rule.Confidence}");
                     }
-
                     return sb.ToString();
                 }
             }
