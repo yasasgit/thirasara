@@ -41,5 +41,20 @@ namespace ThirasaraTest
             this.Close();
 
         }
+
+        private void txtPhoneNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNic_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -15,6 +15,8 @@ namespace ThirasaraTest
             lblNic.Text = UserManagement.Instance.UserNic;
         }
 
+        
+
         private void btnLogout_Click(object sender, System.EventArgs e)
         {
             UserManagement.Instance.UserNic = null;
@@ -49,6 +51,26 @@ namespace ThirasaraTest
                 }
                 connection.Close();
             }
+        }
+
+        private void label7_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void lblLandUsage_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }
