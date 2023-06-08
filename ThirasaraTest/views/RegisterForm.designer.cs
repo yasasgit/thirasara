@@ -73,7 +73,6 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(154, 24);
             this.txtEmail.TabIndex = 13;
-            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // label4
             // 
@@ -144,7 +143,6 @@
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(154, 24);
             this.txtPhoneNumber.TabIndex = 23;
-            this.txtPhoneNumber.TextChanged += new System.EventHandler(this.txtPhoneNumber_TextChanged);
             // 
             // txtPassword
             // 
@@ -169,7 +167,6 @@
             this.txtNic.Name = "txtNic";
             this.txtNic.Size = new System.Drawing.Size(154, 24);
             this.txtNic.TabIndex = 26;
-            this.txtNic.TextChanged += new System.EventHandler(this.txtNic_TextChanged);
             // 
             // label3
             // 

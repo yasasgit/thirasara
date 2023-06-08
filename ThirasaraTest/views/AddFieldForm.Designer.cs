@@ -70,7 +70,6 @@
             this.sizeHaTextBox.Name = "sizeHaTextBox";
             this.sizeHaTextBox.Size = new System.Drawing.Size(132, 24);
             this.sizeHaTextBox.TabIndex = 1;
-            this.sizeHaTextBox.TextChanged += new System.EventHandler(this.sizeHaTextBox_TextChanged);
             // 
             // fieldLocationTextBox
             // 
@@ -286,7 +285,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddFieldForm";
             this.Text = "AddFieldForm";
-            this.Load += new System.EventHandler(this.AddFieldForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

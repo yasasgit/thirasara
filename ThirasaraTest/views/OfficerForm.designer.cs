@@ -41,6 +41,7 @@
             this.btnPredict = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblPredictedYield = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
@@ -60,7 +61,7 @@
             this.textBox3.Location = new System.Drawing.Point(1173, 90);
             this.textBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(154, 24);
+            this.textBox3.Size = new System.Drawing.Size(154, 21);
             this.textBox3.TabIndex = 15;
             // 
             // textBox2
@@ -68,7 +69,7 @@
             this.textBox2.Location = new System.Drawing.Point(1173, 57);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(154, 24);
+            this.textBox2.Size = new System.Drawing.Size(154, 21);
             this.textBox2.TabIndex = 14;
             // 
             // label4
@@ -77,7 +78,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Location = new System.Drawing.Point(1075, 93);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 19);
+            this.label4.Size = new System.Drawing.Size(60, 16);
             this.label4.TabIndex = 12;
             this.label4.Text = "Phone No";
             // 
@@ -87,7 +88,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(1075, 57);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 19);
+            this.label2.Size = new System.Drawing.Size(67, 16);
             this.label2.TabIndex = 10;
             this.label2.Text = "User Name";
             // 
@@ -97,7 +98,7 @@
             this.lblNic.BackColor = System.Drawing.Color.Transparent;
             this.lblNic.Location = new System.Drawing.Point(1075, 25);
             this.lblNic.Name = "lblNic";
-            this.lblNic.Size = new System.Drawing.Size(33, 19);
+            this.lblNic.Size = new System.Drawing.Size(27, 16);
             this.lblNic.TabIndex = 9;
             this.lblNic.Text = "NIC";
             // 
@@ -110,10 +111,9 @@
             this.label6.ForeColor = System.Drawing.Color.Navy;
             this.label6.Location = new System.Drawing.Point(478, 42);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(259, 33);
+            this.label6.Size = new System.Drawing.Size(198, 26);
             this.label6.TabIndex = 18;
             this.label6.Text = "Officer Dashboard";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // pictureBox1
             // 
@@ -142,7 +142,6 @@
             this.button4.Text = "Most Successful";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -178,7 +177,6 @@
             this.btnPredict.Text = "Crop Prediction";
             this.btnPredict.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPredict.UseVisualStyleBackColor = false;
-            this.btnPredict.Click += new System.EventHandler(this.btnPredict_Click);
             // 
             // saveFileDialog1
             // 
@@ -188,12 +186,22 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Window;
             this.panel1.Controls.Add(this.btnPredict);
+            this.panel1.Controls.Add(this.lblPredictedYield);
             this.panel1.Font = new System.Drawing.Font("Microsoft YaHei UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.ForeColor = System.Drawing.Color.DarkGreen;
             this.panel1.Location = new System.Drawing.Point(159, 189);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(484, 213);
             this.panel1.TabIndex = 27;
+            // 
+            // lblPredictedYield
+            // 
+            this.lblPredictedYield.AutoSize = true;
+            this.lblPredictedYield.Location = new System.Drawing.Point(218, 106);
+            this.lblPredictedYield.Name = "lblPredictedYield";
+            this.lblPredictedYield.Size = new System.Drawing.Size(29, 16);
+            this.lblPredictedYield.TabIndex = 25;
+            this.lblPredictedYield.Text = "text";
             // 
             // panel2
             // 
@@ -256,7 +264,7 @@
             this.btnLandUsage.Name = "btnLandUsage";
             this.btnLandUsage.Size = new System.Drawing.Size(238, 73);
             this.btnLandUsage.TabIndex = 23;
-            this.btnLandUsage.Text = "3";
+            this.btnLandUsage.Text = "Land Usage";
             this.btnLandUsage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLandUsage.UseVisualStyleBackColor = false;
             // 
@@ -266,10 +274,9 @@
             this.lblLandUsage.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblLandUsage.Location = new System.Drawing.Point(806, 215);
             this.lblLandUsage.Name = "lblLandUsage";
-            this.lblLandUsage.Size = new System.Drawing.Size(86, 19);
+            this.lblLandUsage.Size = new System.Drawing.Size(29, 16);
             this.lblLandUsage.TabIndex = 24;
-            this.lblLandUsage.Text = "Land Usage";
-            this.lblLandUsage.Click += new System.EventHandler(this.lblLandUsage_Click);
+            this.lblLandUsage.Text = "text";
             // 
             // pictureBox2
             // 
@@ -284,7 +291,7 @@
             // 
             // OfficerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
@@ -296,7 +303,6 @@
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnLandUsage);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox3);
@@ -305,6 +311,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblNic);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -313,6 +320,7 @@
             this.Load += new System.EventHandler(this.OfficerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -342,5 +350,6 @@
         private System.Windows.Forms.Button btnLandUsage;
         private System.Windows.Forms.Label lblLandUsage;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label lblPredictedYield;
     }
 }

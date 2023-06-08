@@ -96,10 +96,5 @@ namespace ThirasaraTest
             var registrationForm = new RegisterForm();
             registrationForm.ShowDialog();
         }
-
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
