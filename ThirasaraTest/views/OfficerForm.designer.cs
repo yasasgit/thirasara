@@ -135,7 +135,7 @@
             this.button4.ForeColor = System.Drawing.Color.DarkGreen;
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(717, 345);
+            this.button4.Location = new System.Drawing.Point(717, 297);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(238, 57);
             this.button4.TabIndex = 26;
@@ -243,7 +243,7 @@
             // btnLogout
             // 
             this.btnLogout.BackColor = System.Drawing.Color.Pink;
-            this.btnLogout.Location = new System.Drawing.Point(1251, 683);
+            this.btnLogout.Location = new System.Drawing.Point(1253, 630);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(76, 34);
             this.btnLogout.TabIndex = 32;
@@ -259,7 +259,7 @@
             this.btnLandUsage.ForeColor = System.Drawing.Color.DarkGreen;
             this.btnLandUsage.Image = ((System.Drawing.Image)(resources.GetObject("btnLandUsage.Image")));
             this.btnLandUsage.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnLandUsage.Location = new System.Drawing.Point(717, 189);
+            this.btnLandUsage.Location = new System.Drawing.Point(717, 141);
             this.btnLandUsage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLandUsage.Name = "btnLandUsage";
             this.btnLandUsage.Size = new System.Drawing.Size(238, 73);
@@ -296,7 +296,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.ClientSize = new System.Drawing.Size(1350, 681);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblLandUsage);
             this.Controls.Add(this.panel4);

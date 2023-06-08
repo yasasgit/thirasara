@@ -23,7 +23,7 @@ namespace ThirasaraTest
                 byte soilPhosphorus = byte.Parse(soilPhosphorusTextBox.Text);
                 byte soilPotassium = byte.Parse(soilPotassiumTextBox.Text);
                 decimal soilPh = decimal.Parse(soilPhTextBox.Text);
-                short soilTexture = short.Parse(txtSoilTexture.Text);
+                short soilTexture = short.Parse(soilTextureComboBox.Text);
 
                 Console.Out.WriteLine(soilTexture);
 

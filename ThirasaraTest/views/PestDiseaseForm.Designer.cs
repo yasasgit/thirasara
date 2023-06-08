@@ -34,22 +34,20 @@
             // 
             // txtApriori
             // 
-            this.txtApriori.Location = new System.Drawing.Point(13, 21);
-            this.txtApriori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtApriori.Location = new System.Drawing.Point(97, 205);
             this.txtApriori.Multiline = true;
             this.txtApriori.Name = "txtApriori";
-            this.txtApriori.Size = new System.Drawing.Size(1069, 575);
+            this.txtApriori.Size = new System.Drawing.Size(645, 211);
             this.txtApriori.TabIndex = 0;
             // 
             // PestDiseaseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1098, 625);
+            this.ClientSize = new System.Drawing.Size(830, 469);
             this.Controls.Add(this.txtApriori);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PestDiseaseForm";
             this.Text = "PestDiseaseForm";
             this.Load += new System.EventHandler(this.PestDiseaseForm_Load);
