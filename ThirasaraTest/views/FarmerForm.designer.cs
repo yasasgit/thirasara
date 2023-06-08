@@ -203,6 +203,7 @@
             this.cropCyleDataGridView.RowHeadersWidth = 51;
             this.cropCyleDataGridView.Size = new System.Drawing.Size(1281, 135);
             this.cropCyleDataGridView.TabIndex = 28;
+            this.cropCyleDataGridView.SelectionChanged += new System.EventHandler(this.cropCyleDataGridView_SelectionChanged);
             // 
             // label1
             // 
@@ -238,7 +239,6 @@
             this.environmentDataGridView.RowHeadersWidth = 51;
             this.environmentDataGridView.Size = new System.Drawing.Size(408, 210);
             this.environmentDataGridView.TabIndex = 31;
-            this.environmentDataGridView.SelectionChanged += new System.EventHandler(this.environmentDataGridView_SelectionChanged);
             // 
             // label8
             // 

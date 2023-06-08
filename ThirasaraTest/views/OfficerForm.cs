@@ -25,12 +25,6 @@ namespace ThirasaraTest
         }
 
         [System.Obsolete]
-        private void btnPredict_Click(object sender, System.EventArgs e)
-        {
-            AdvancedAlgorithm mdntest = new AdvancedAlgorithm();
-            mdntest.PerformLinearRegression();
-        }
-
         private void OfficerForm_Load(object sender, System.EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -41,6 +35,21 @@ namespace ThirasaraTest
                     decimal totalLandUsage = (decimal)command.ExecuteScalar();
                     lblLandUsage.Text = totalLandUsage.ToString();
                 }
+                connection.Close();
+            }
+
+            AdvancedAlgorithm mdntest = new AdvancedAlgorithm();
+            mdntest.PerformLinearRegression();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("SELECT dbo.GetTotalPredictedYield() AS TotalPredictedYield", connection))
+                {
+                    decimal predictedYield = (decimal)command.ExecuteScalar();
+                    lblPredictedYield.Text = predictedYield.ToString();
+                }
+                connection.Close();
             }
         }
 

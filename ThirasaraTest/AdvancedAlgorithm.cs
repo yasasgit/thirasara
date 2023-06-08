@@ -17,7 +17,6 @@ public class AdvancedAlgorithm
     [Obsolete]
     public void PerformLinearRegression()
     {
-            var crop_cycle_id = 1000;
             var reader = new CsvReader("model/train_data.csv", hasHeaders: true);
             var ols = new OrdinaryLeastSquares()
             {
@@ -61,16 +60,26 @@ public class AdvancedAlgorithm
         //testing
         using (var conn = new SqlConnection(connectionString))
         {
+            var crop_cycle_id = 1163;
             conn.Open();
-            var testReader = new CsvReader("model/test_data.csv", hasHeaders: true);
-            List<string[]> testContentList = testReader.ReadToEnd();
-            string[][] testContents = testContentList.ToArray();
+
+            var testDataQuery = "SELECT plant_density_ha, temperature_c, rainfall_irrigation_mm, humidity_perc, wind_speed_m_s, sunlight_exposure_h_day, soil_ph, soil_texture_level, severity_level FROM crop_cycle_data AS ccd JOIN environment_data AS ed ON ed.crop_cycle = ccd.crop_cycle_id JOIN field_data AS fd ON ccd.field = fd.field_id JOIN soil_texture_data AS std ON fd.soil_texture = std.soil_texture_id JOIN fertilizer_data AS fert ON ccd.fertilizer = fert.fertilizer_id JOIN crop_cycle_pest_disease AS ccpd ON ccd.crop_cycle_id = ccpd.crop_cycle JOIN pest_disease_data AS pd ON pd.pest_disease_id = ccpd.pest_disease WHERE crop_cycle_id = @CropCycleId";
+            var testDataCommand = new SqlCommand(testDataQuery, conn);
+            testDataCommand.Parameters.AddWithValue("@CropCycleId", crop_cycle_id);
+            var testReader = testDataCommand.ExecuteReader();
+
             List<double[]> testInputs = new List<double[]>();
-            foreach (var row in testContents)
+            while (testReader.Read())
             {
-                double[] testValues = row.Take(9).Select(Double.Parse).ToArray();
+                double[] testValues = new double[9];
+                for (int i = 0; i < 9; i++)
+                {
+                    testValues[i] = Convert.ToDouble(testReader[i]);
+                }
                 testInputs.Add(testValues);
             }
+            testReader.Close();
+
             double[] prediction = regression.Transform(testInputs.ToArray());
             Console.WriteLine("Predicted values:");
             foreach (var value in prediction)
@@ -146,7 +155,6 @@ public class AdvancedAlgorithm
                         var consequent = string.Join(", ", rule.Y);
                         sb.AppendLine($"[{antecedent}] -> [{consequent}]; support: {rule.Support}, confidence: {rule.Confidence}");
                     }
-
                     return sb.ToString();
                 }
             }

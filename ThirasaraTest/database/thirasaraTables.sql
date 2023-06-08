@@ -10,9 +10,9 @@ CREATE TABLE user_data
     last_name VARCHAR(255),
     phone_number BIGINT,
     password_hashed BINARY(20) NOT NULL,
-    account_type VARCHAR(10) NOT NULL CHECK (account_type IN ( 'cultivator', 'officer' ))
+    account_type VARCHAR(10) NOT NULL CHECK (account_type IN ('cultivator', 'officer'))
 );
--- password stored as sha1 hashing
+-- Passwords will be hashed using SHA-1 algorithm
 
 CREATE TABLE crop_data
 (
@@ -35,9 +35,10 @@ CREATE TABLE crop_data
     demand_per_crop_cycle_kg SMALLINT,
     supply_per_crop_cycle_kg SMALLINT
 );
--- required factors stored in ranges and we assume they remain same during each stage of the crop 
--- currently only implemented for the crop rice
--- farmer uses required fertilizer amounts his added amounts and suggested required amounts gets displayed
+-- Required factors are stored in ranges and assumed to remain the same during each stage of the crop
+-- Currently, this is only implemented for rice crops
+-- Farmers use the required amounts of fertilizer
+-- Added amounts and suggested required amounts are displayed in the farmer dashboard
 
 CREATE TABLE fertilizer_data
 (
@@ -78,9 +79,9 @@ CREATE TABLE field_data
     FOREIGN KEY (cultivator) REFERENCES user_data (nic),
     FOREIGN KEY (soil_texture) REFERENCES soil_texture_data (soil_texture_id)
 );
--- farmers only use one crop at a time per field
--- only areas in homagama
--- add contraint cultivators account type
+-- Each field is assumed to be used by a single farmer (cultivator) at a time
+-- Currently, only locations in Homagama are supported
+-- The cultivator account type must be "cultivator"
 
 CREATE TABLE crop_cycle_data
 (
@@ -99,10 +100,9 @@ CREATE TABLE crop_cycle_data
     FOREIGN KEY (fertilizer) REFERENCES fertilizer_data (fertilizer_id),
     FOREIGN KEY (crop) REFERENCES crop_data (crop_id)
 );
--- should take sum of nutrients (soil + fertilizer)
--- only environment factors change during a crop cycle
--- farmers only use one fertilizer at a time per cycle
--- predicts yield based on selected factors
+-- Only environmental factors change during a single crop cycle
+-- Farmers use only one type of fertilizer during a single crop cycle
+-- The predicted yield is based on selected factors
 
 CREATE TABLE crop_cycle_pest_disease
 (
@@ -125,7 +125,7 @@ CREATE TABLE environment_data
     update_date DATE,
     FOREIGN KEY (crop_cycle) REFERENCES crop_cycle_data (crop_cycle_id)
 );
--- take values of latest entry for calculations
--- whole field has same environment
--- when inserting a new environment data update crop_cycle_data with latest environment
--- each environment factor doesnt exceed..... 
+-- When a new record is inserted, the mean value of all records will be taken
+-- The values of the latest entry will be used for calculations
+-- The entire field is assumed to have the same environment
+-- Each environment factor does not exceed practical values

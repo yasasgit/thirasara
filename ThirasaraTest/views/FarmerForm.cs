@@ -37,7 +37,6 @@ namespace ThirasaraTest
 
         private void fieldDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-
             DataTable dataTable = new DataTable();
             if (fieldDataGridView.SelectedRows.Count > 0)
             {
@@ -47,7 +46,7 @@ namespace ThirasaraTest
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string storedProcedure = "GetEnvironmentData";
+                    string storedProcedure = "GetCropCycleData";
                     using (SqlCommand command = new SqlCommand(storedProcedure, connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
@@ -58,22 +57,23 @@ namespace ThirasaraTest
                         }
                     }
                 }
-                environmentDataGridView.DataSource = dataTable;
+                cropCyleDataGridView.DataSource = dataTable;
             }
         }
 
-        private void CropCycleDataGridView_SelectionChanged(object sender, EventArgs e)
+        private void cropCyleDataGridView_SelectionChanged(object sender, EventArgs e)
         {
+
             DataTable dataTable = new DataTable();
-            if (fieldDataGridView.SelectedRows.Count > 0)
+            if (cropCyleDataGridView.SelectedRows.Count > 0)
             {
-                DataGridViewRow selectedRow = fieldDataGridView.SelectedRows[0];
+                DataGridViewRow selectedRow = cropCyleDataGridView.SelectedRows[0];
                 int cropCycleId = Convert.ToInt32(selectedRow.Cells["crop_cycle_id"].Value);
                 dataTable.Clear();
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string storedProcedure = "RequiredFertilizer";
+                    string storedProcedure = "GetEnvironmentData";
                     using (SqlCommand command = new SqlCommand(storedProcedure, connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
@@ -84,7 +84,25 @@ namespace ThirasaraTest
                         }
                     }
                 }
-                fertilizerDataGridView.DataSource = dataTable;
+                environmentDataGridView.DataSource = dataTable;
+                connection.Close();
+                DataTable dataTableF = new DataTable();
+                dataTableF.Clear();
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string storedProcedure = "RequiredFertilizer";
+                    using (SqlCommand command = new SqlCommand(storedProcedure, connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@cropCycleId", cropCycleId);
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTableF);
+                        }
+                    }
+                }
+                fertilizerDataGridView.DataSource = dataTableF;
             }
         }
 
@@ -105,10 +123,6 @@ namespace ThirasaraTest
         {
             var afForm = new AddFieldForm();
             afForm.ShowDialog();
-        }
-
-        private void environmentDataGridView_SelectionChanged(object sender, EventArgs e)
-        {
         }
     }
 }
