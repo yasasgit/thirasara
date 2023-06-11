@@ -13,7 +13,6 @@ namespace ThirasaraTest
         private LoginForm()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
             txtPassword.UseSystemPasswordChar = true;
         }
 
@@ -59,30 +58,36 @@ namespace ThirasaraTest
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string email = txtEmail.Text.Trim();
-            string password = txtPassword.Text.Trim();
-
-            string userType = UserManagement.Instance.Login(email, password);
-
-            switch (userType)
+            try
             {
-                case "officer":
-                    MessageBox.Show("Welcome Officer!");
-                    LoginForm.Instance.Hide();
-                    OfficerForm adminForm = new OfficerForm();
-                    adminForm.Show();
-                    break;
+                string email = txtEmail.Text.Trim();
+                string password = txtPassword.Text.Trim();
 
-                case "cultivator":
-                    MessageBox.Show("Welcome Cultivator!");
-                    LoginForm.Instance.Hide();
-                    FarmerForm userForm = new FarmerForm();
-                    userForm.Show();
-                    break;
+                string userType = UserManagement.Instance.Login(email, password);
 
-                default:
-                    MessageBox.Show("Invalid user type. Please contact administrator.");
-                    break;
+                switch (userType)
+                {
+                    case "officer":
+                        MessageBox.Show("Welcome Officer!");
+                        LoginForm.Instance.Hide();
+                        OfficerForm adminForm = new OfficerForm();
+                        adminForm.Show();
+                        break;
+
+                    case "cultivator":
+                        MessageBox.Show("Welcome Cultivator!");
+                        LoginForm.Instance.Hide();
+                        FarmerForm userForm = new FarmerForm();
+                        userForm.Show();
+                        break;
+
+                    default:
+                        throw new Exception("Invalid user type. Please contact the administrator.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

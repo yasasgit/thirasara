@@ -14,31 +14,40 @@ namespace ThirasaraTest
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-
-            Hashing hashing = new Hashing();
-            string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
+                Hashing hashing = new Hashing();
+                string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
 
-                using (SqlCommand command = new SqlCommand())
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    command.Connection = connection;
-                    command.CommandText = "INSERT INTO user_data (nic, email, first_name, last_name, phone_number, password_hashed, account_type) " +
-                                          "VALUES (@Nic, @Email, @FirstName, @LastName, @PhoneNumber, @Password, @Account_type)";
+                    connection.Open();
 
-                    command.Parameters.AddWithValue("@Nic", txtNic.Text);
-                    command.Parameters.AddWithValue("@Email", txtEmail.Text);
-                    command.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
-                    command.Parameters.AddWithValue("@LastName", txtLastName.Text);
-                    command.Parameters.AddWithValue("@PhoneNumber", txtPhoneNumber.Text);
-                    command.Parameters.AddWithValue("@Password", hashing.CalculateSHA1Hash(txtPassword.Text));
-                    command.Parameters.AddWithValue("@Account_type", "cultivator");
-                    command.ExecuteNonQuery();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = "INSERT INTO user_data (nic, email, first_name, last_name, phone_number, password_hashed, account_type) " +
+                                              "VALUES (@Nic, @Email, @FirstName, @LastName, @PhoneNumber, @Password, @Account_type)";
+
+                        command.Parameters.AddWithValue("@Nic", txtNic.Text);
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        command.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+                        command.Parameters.AddWithValue("@LastName", txtLastName.Text);
+                        command.Parameters.AddWithValue("@PhoneNumber", txtPhoneNumber.Text);
+                        command.Parameters.AddWithValue("@Password", hashing.CalculateSHA1Hash(txtPassword.Text));
+                        command.Parameters.AddWithValue("@Account_type", "cultivator");
+                        command.ExecuteNonQuery();
+                    }
                 }
+
+                MessageBox.Show("Account Created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
-            this.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while inserting data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
     }
 }

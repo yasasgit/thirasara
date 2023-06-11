@@ -29,40 +29,46 @@ public class UserManagement
     public string Login(string email, string password)
     {
         Hashing hashing = new Hashing();
-        using (SqlConnection connection = new SqlConnection(connectionString))
+        try
         {
-            connection.Open();
-
-            string query = "SELECT nic, password_hashed, account_type FROM user_data WHERE email = @email";
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                command.Parameters.AddWithValue("@email", email);
+                connection.Open();
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                string query = "SELECT nic, password_hashed, account_type FROM user_data WHERE email = @email";
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    if (reader.Read())
+                    command.Parameters.AddWithValue("@email", email);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        string nic = (string)reader["nic"];
-                        byte[] storedHash = (byte[])reader["password_hashed"];
-                        byte[] passwordHash = hashing.CalculateSHA1Hash(password);
-                        if (hashing.CompareByteArrays(passwordHash, storedHash))
+                        if (reader.Read())
                         {
-                            string userType = (string)reader["account_type"];
-                            UserManagement.Instance.UserNic = nic;
-                            return userType;
+                            string nic = (string)reader["nic"];
+                            byte[] storedHash = (byte[])reader["password_hashed"];
+                            byte[] passwordHash = hashing.CalculateSHA1Hash(password);
+                            if (hashing.CompareByteArrays(passwordHash, storedHash))
+                            {
+                                string userType = (string)reader["account_type"];
+                                UserManagement.Instance.UserNic = nic;
+                                return userType;
+                            }
+                            else
+                            {
+                                throw new Exception("Invalid email or password. Please try again.");
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Invalid email or password. Please try again.");
+                            throw new Exception("Read Failed");
                         }
                     }
-                    else
-                    {
-                        Console.WriteLine("Read Failed");
-                    }
-
                 }
             }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         return "fail";
     }
