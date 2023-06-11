@@ -17,45 +17,45 @@ public class AdvancedAlgorithm
     [Obsolete]
     public void PerformLinearRegression()
     {
-            var reader = new CsvReader("model/train_data.csv", hasHeaders: true);
-            var ols = new OrdinaryLeastSquares()
-            {
-                UseIntercept = true
-            };
+        var reader = new CsvReader("model/train_data.csv", hasHeaders: true);
+        var ols = new OrdinaryLeastSquares()
+        {
+            UseIntercept = true
+        };
 
-            List<string[]> contentList = reader.ReadToEnd();
-            string[][] contents = contentList.ToArray();
+        List<string[]> contentList = reader.ReadToEnd();
+        string[][] contents = contentList.ToArray();
 
-            List<double[]> firstList = new List<double[]>();
-            foreach (var row in contents)
-            {
-                double[] firstValues = row.Take(9).Select(Double.Parse).ToArray();
-                firstList.Add(firstValues);
-            }
-            double[][] inputs = firstList.ToArray();
+        List<double[]> firstList = new List<double[]>();
+        foreach (var row in contents)
+        {
+            double[] firstValues = row.Take(9).Select(Double.Parse).ToArray();
+            firstList.Add(firstValues);
+        }
+        double[][] inputs = firstList.ToArray();
 
-            List<double> secondList = new List<double>();
-            foreach (var row in contents)
-            {
-                string secondValue = row[9];
-                double parsedValue = double.Parse(secondValue);
-                secondList.Add(parsedValue);
-            }
-            double[] outputs = secondList.ToArray();
+        List<double> secondList = new List<double>();
+        foreach (var row in contents)
+        {
+            string secondValue = row[9];
+            double parsedValue = double.Parse(secondValue);
+            secondList.Add(parsedValue);
+        }
+        double[] outputs = secondList.ToArray();
 
-            MultipleLinearRegression regression = ols.Learn(inputs, outputs);
-            double a = regression.Weights[0];
-            double b = regression.Weights[1];
-            double c = regression.Intercept;
-            double[] predicted = regression.Transform(inputs);
-            double error = new SquareLoss(outputs).Loss(predicted);
-            double r2 = new RSquaredLoss(numberOfInputs: 2, expected: outputs).Loss(predicted);
-            var r2loss = new RSquaredLoss(numberOfInputs: 2, expected: outputs)
-            {
-                Adjust = true,
-            };
-            double ar2 = r2loss.Loss(predicted);
-            double ur2 = regression.CoefficientOfDetermination(inputs, outputs, adjust: true);
+        MultipleLinearRegression regression = ols.Learn(inputs, outputs);
+        double a = regression.Weights[0];
+        double b = regression.Weights[1];
+        double c = regression.Intercept;
+        double[] predicted = regression.Transform(inputs);
+        double error = new SquareLoss(outputs).Loss(predicted);
+        double r2 = new RSquaredLoss(numberOfInputs: 2, expected: outputs).Loss(predicted);
+        var r2loss = new RSquaredLoss(numberOfInputs: 2, expected: outputs)
+        {
+            Adjust = true,
+        };
+        double ar2 = r2loss.Loss(predicted);
+        double ur2 = regression.CoefficientOfDetermination(inputs, outputs, adjust: true);
 
         //testing
         using (var conn = new SqlConnection(connectionString))
@@ -147,7 +147,7 @@ public class AdvancedAlgorithm
                     }
 
                     AssociationRule<int>[] rules = classifier.Rules;
-                    
+
 
                     foreach (var rule in rules)
                     {

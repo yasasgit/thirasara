@@ -15,7 +15,7 @@ namespace ThirasaraTest
             lblNic.Text = UserManagement.Instance.UserNic;
         }
 
-        
+
 
         private void btnLogout_Click(object sender, System.EventArgs e)
         {

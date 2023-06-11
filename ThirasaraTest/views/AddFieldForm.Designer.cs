@@ -258,7 +258,7 @@
             this.Controls.Add(this.btnSubmit);
             this.ForeColor = System.Drawing.Color.White;
             this.Name = "AddFieldForm";
-            this.Text = "AddFieldForm";
+            this.Text = "Add Field";
             this.ResumeLayout(false);
             this.PerformLayout();
 

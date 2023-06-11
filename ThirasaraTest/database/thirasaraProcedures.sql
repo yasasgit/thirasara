@@ -1,5 +1,4 @@
--- possible scenarios for procedures
--- load field data for farmer
+-- load field data table for farmer using nic
 CREATE OR ALTER PROCEDURE GetFieldData
     @nic VARCHAR(10)
 AS
@@ -19,7 +18,7 @@ END;
 -- for farmer
 EXEC GetFieldData @nic = '449683857v';
 
--- load crop cycle data for farmer
+-- load crop cycle data table for farmer using field id
 CREATE OR ALTER PROCEDURE GetCropCycleData
     @fieldId VARCHAR(10)
 AS
@@ -38,7 +37,7 @@ END;
 -- for farmer
 EXEC GetCropCycleData @fieldId = '449683857v';
 
--- load environment data for farmer
+-- load environment data table for farmer using crop cycle id
 CREATE OR ALTER PROCEDURE GetEnvironmentData
     @cropCycleId VARCHAR(10)
 AS
@@ -57,7 +56,7 @@ END;
 EXEC GetEnvironmentData @cropCycleId = '449683857v';
 
 
--- load environment data for farmer
+-- load environment data table for farmer using crop cycle id
 CREATE OR ALTER PROCEDURE RequiredFertilizer
     @cropCycleId smallint
 AS
@@ -79,7 +78,8 @@ EXEC RequiredFertilizer @cropCycleId = 1000;
 
 
 
--- Inserts Random Data for Prototype (not used)
+-- NOT USED
+-- Inserts Random Data for Prototype
 CREATE OR ALTER PROCEDURE InsertTainData
 AS
 BEGIN

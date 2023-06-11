@@ -1,6 +1,6 @@
--- possible scenarios for triggers
-
--- calculates the mean values based on the latest record and updates the most recent record with the calculated mean 
+-- old environment data should affect new environment data
+-- This trigger calculates the mean values based on the latest record
+-- It also updates the most recent record with the calculated mean 
 CREATE TRIGGER calculate_mean_values
 ON environment_data
 AFTER INSERT
@@ -34,8 +34,8 @@ BEGIN
 
 END;
 
-
--- Create a trigger to enforce the planted_date < harvest_date constraint
+-- harvest_date must be greater than planted_date
+-- This is trigger is to enforce the planted_date < harvest_date constraint
 CREATE TRIGGER check_planted_harvest_dates
 ON crop_cycle_data
 AFTER INSERT, UPDATE
@@ -54,8 +54,8 @@ BEGIN
 END;
 
 
-
--- trigger to run R code inside sql (not used)
+-- NOT USED
+-- trigger to run R code inside sql
 CREATE OR ALTER TRIGGER update_crop_cycle_predictions
 ON crop_cycle_data
 AFTER UPDATE
@@ -78,7 +78,8 @@ BEGIN
 END;
 END;
 
--- does prediction using R code (not used)
+-- NOT USED
+-- does prediction using R code
 CREATE OR ALTER TRIGGER update_crop_cycle_predictions
 ON crop_cycle_data
 AFTER UPDATE

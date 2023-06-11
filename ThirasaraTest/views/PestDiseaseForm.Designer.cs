@@ -49,7 +49,7 @@
             this.ClientSize = new System.Drawing.Size(830, 469);
             this.Controls.Add(this.txtApriori);
             this.Name = "PestDiseaseForm";
-            this.Text = "PestDiseaseForm";
+            this.Text = "Pests and Diseases";
             this.Load += new System.EventHandler(this.PestDiseaseForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

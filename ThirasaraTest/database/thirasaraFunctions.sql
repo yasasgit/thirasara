@@ -1,4 +1,4 @@
--- possible scenarios for functions
+-- function to get total size of all fields in the database
 CREATE OR ALTER FUNCTION GetTotalLandUsage()
 RETURNS DECIMAL(10, 2)
 AS
@@ -13,6 +13,8 @@ END;
 
 SELECT dbo.GetTotalLandUsage() AS TotalLandUsage;
 
+-- function to get total predicted yield per total field size of all crop cycles
+-- Selects only the crop cycles with latest environment data
 CREATE OR ALTER FUNCTION GetTotalPredictedYield()
 RETURNS DECIMAL(10, 2)
 AS

@@ -8,7 +8,7 @@ namespace ThirasaraTest
         {
             InitializeComponent();
         }
-private void PestDiseaseForm_Load(object sender, System.EventArgs e)
+        private void PestDiseaseForm_Load(object sender, System.EventArgs e)
         {
             AdvancedAlgorithm mdntest = new AdvancedAlgorithm();
             txtApriori.Text = mdntest.PerformAprioriAnalysis();

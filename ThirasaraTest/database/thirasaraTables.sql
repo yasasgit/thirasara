@@ -12,7 +12,6 @@ CREATE TABLE user_data
     password_hashed BINARY(20) NOT NULL,
     account_type VARCHAR(10) NOT NULL CHECK (account_type IN ('cultivator', 'officer'))
 );
--- Passwords will be hashed using SHA-1 algorithm
 
 CREATE TABLE crop_data
 (
@@ -35,10 +34,7 @@ CREATE TABLE crop_data
     demand_per_crop_cycle_kg SMALLINT,
     supply_per_crop_cycle_kg SMALLINT
 );
--- Required factors are stored in ranges and assumed to remain the same during each stage of the crop
--- Currently, this is only implemented for rice crops
--- Farmers use the required amounts of fertilizer
--- Added amounts and suggested required amounts are displayed in the farmer dashboard
+-- Required factors are stored in ranges
 
 CREATE TABLE fertilizer_data
 (
@@ -79,8 +75,6 @@ CREATE TABLE field_data
     FOREIGN KEY (cultivator) REFERENCES user_data (nic),
     FOREIGN KEY (soil_texture) REFERENCES soil_texture_data (soil_texture_id)
 );
--- Each field is assumed to be used by a single farmer (cultivator) at a time
--- Currently, only locations in Homagama are supported
 -- The cultivator account type must be "cultivator"
 
 CREATE TABLE crop_cycle_data
@@ -100,9 +94,6 @@ CREATE TABLE crop_cycle_data
     FOREIGN KEY (fertilizer) REFERENCES fertilizer_data (fertilizer_id),
     FOREIGN KEY (crop) REFERENCES crop_data (crop_id)
 );
--- Only environmental factors change during a single crop cycle
--- Farmers use only one type of fertilizer during a single crop cycle
--- The predicted yield is based on selected factors
 
 CREATE TABLE crop_cycle_pest_disease
 (
@@ -125,7 +116,4 @@ CREATE TABLE environment_data
     update_date DATE,
     FOREIGN KEY (crop_cycle) REFERENCES crop_cycle_data (crop_cycle_id)
 );
--- When a new record is inserted, the mean value of all records will be taken
--- The values of the latest entry will be used for calculations
--- The entire field is assumed to have the same environment
--- Each environment factor does not exceed practical values
+-- The values of the latest(by date) entry will be used for calculations because when a new record is inserted, the mean value of all records will be taken

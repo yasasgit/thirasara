@@ -5,6 +5,7 @@ namespace ThirasaraTest
 {
     public class Hashing
     {
+        //Passwords will be hashed using SHA-1 algorithm
         public Hashing() { }
 
         public byte[] CalculateSHA1Hash(string password)
