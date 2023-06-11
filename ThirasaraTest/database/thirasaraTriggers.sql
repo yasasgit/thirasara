@@ -1,23 +1,5 @@
 -- possible scenarios for triggers
 
--- Create a trigger to enforce the planted_date < harvest_date constraint
-CREATE TRIGGER check_planted_harvest_dates
-ON crop_cycle_data
-AFTER INSERT, UPDATE
-AS
-BEGIN
-    IF EXISTS (
-        SELECT 1
-        FROM inserted
-        WHERE planted_date >= harvest_date
-    )
-    BEGIN
-        RAISERROR ('Planted date must be earlier than harvest date', 16, 1);
-        ROLLBACK TRANSACTION;
-        RETURN;
-    END
-END;
-
 -- calculates the mean values based on the latest record and updates the most recent record with the calculated mean 
 CREATE TRIGGER calculate_mean_values
 ON environment_data
@@ -51,6 +33,27 @@ BEGIN
     WHERE environment_data_id = (SELECT MAX(environment_data_id) FROM environment_data WHERE crop_cycle = @crop_cycle_id);
 
 END;
+
+
+-- Create a trigger to enforce the planted_date < harvest_date constraint
+CREATE TRIGGER check_planted_harvest_dates
+ON crop_cycle_data
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    IF EXISTS (
+        SELECT 1
+        FROM inserted
+        WHERE planted_date >= harvest_date
+    )
+    BEGIN
+        RAISERROR ('Planted date must be earlier than harvest date', 16, 1);
+        ROLLBACK TRANSACTION;
+        RETURN;
+    END
+END;
+
+
 
 -- trigger to run R code inside sql (not used)
 CREATE OR ALTER TRIGGER update_crop_cycle_predictions
