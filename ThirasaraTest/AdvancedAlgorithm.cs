@@ -151,13 +151,36 @@ public class AdvancedAlgorithm
 
                     foreach (var rule in rules)
                     {
-                        var antecedent = string.Join(", ", rule.X);
-                        var consequent = string.Join(", ", rule.Y);
-                        sb.AppendLine($"[{antecedent}] -> [{consequent}]; support: {rule.Support}, confidence: {rule.Confidence}");
+                        var antecedentLabels = GetLabelsForValues(rule.X.ToArray());
+                        var consequentLabels = GetLabelsForValues(rule.Y.ToArray());
+                        var antecedent = string.Join(", ", antecedentLabels);
+                        var consequent = string.Join(", ", consequentLabels);
+                        sb.AppendLine($"If your crop cycle have \"{antecedent}\" you may get \"{consequent}\" support: {rule.Support}, confidence: {rule.Confidence}");
+
                     }
                     return sb.ToString();
                 }
             }
         }
     }
+
+    private string[] GetLabelsForValues(int[] values)
+    {
+        List<string> labels = new List<string>();
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            foreach (int value in values)
+            {
+                string query = "SELECT pest_disease_name FROM pest_disease_data WHERE pest_disease_id = @Value";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Value", value);
+                string label = command.ExecuteScalar()?.ToString();
+                labels.Add(label);
+            }
+            connection.Close();
+        }
+        return labels.ToArray();
+    }
+
 }

@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -24,7 +26,6 @@ namespace ThirasaraTest
             this.Close();
         }
 
-        [System.Obsolete]
         private void OfficerForm_Load(object sender, System.EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -37,10 +38,6 @@ namespace ThirasaraTest
                 }
                 connection.Close();
             }
-
-            AdvancedAlgorithm mdntest = new AdvancedAlgorithm();
-            mdntest.PerformLinearRegression();
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -50,6 +47,25 @@ namespace ThirasaraTest
                     lblPredictedYield.Text = predictedYield.ToString();
                 }
                 connection.Close();
+            }
+        }
+
+        private void btnReset_Click(object sender, System.EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("ResetPredictedYield", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Predictions have been reset");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
             }
         }
     }

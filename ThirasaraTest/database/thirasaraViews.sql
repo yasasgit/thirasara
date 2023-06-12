@@ -1,7 +1,7 @@
 -- view identifies crop cycles that are at high risk of pest and disease
 -- based on the severity level
 CREATE VIEW vw_high_risk_crop_cycles AS
-SELECT cc.crop_cycle_id, c.crop_name, pd.pest_disease_name
+SELECT cc.crop_cycle_id, pd.pest_disease_name
 FROM crop_cycle_data cc
 JOIN crop_cycle_pest_disease cpd ON cc.crop_cycle_id = cpd.crop_cycle
 JOIN pest_disease_data pd ON cpd.pest_disease = pd.pest_disease_id

@@ -124,5 +124,16 @@ namespace ThirasaraTest
             var afForm = new AddFieldForm();
             afForm.ShowDialog();
         }
+
+        [Obsolete]
+        private void btnPredict_Click(object sender, EventArgs e)
+        {
+            AdvancedAlgorithm mdntest = new AdvancedAlgorithm();
+            mdntest.PerformLinearRegression();
+            MessageBox.Show("Predictions Entered to the Database");
+            Form currentForm = new FarmerForm();
+            this.Close();
+            currentForm.Show();
+        }
     }
 }

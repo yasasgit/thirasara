@@ -76,6 +76,13 @@ END;
 -- for farmer
 EXEC RequiredFertilizer @cropCycleId = 1000;
 
+-- Resets Predicted Values
+CREATE PROCEDURE ResetPredictedYield
+AS
+BEGIN
+    UPDATE crop_cycle_data
+    SET predicted_yield_kg_ha = 0;
+END;
 
 
 -- NOT USED

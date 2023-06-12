@@ -48,6 +48,7 @@
             this.environmentDataGridView = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnPredict = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fieldDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fertilizerDataGridView)).BeginInit();
@@ -157,7 +158,7 @@
             this.btnPnD.Name = "btnPnD";
             this.btnPnD.Size = new System.Drawing.Size(147, 37);
             this.btnPnD.TabIndex = 24;
-            this.btnPnD.Text = "Vulnerable Crops";
+            this.btnPnD.Text = "Pests and Diseases";
             this.btnPnD.UseVisualStyleBackColor = true;
             this.btnPnD.Click += new System.EventHandler(this.btnPnD_Click);
             // 
@@ -263,6 +264,16 @@
             this.pictureBox2.TabIndex = 33;
             this.pictureBox2.TabStop = false;
             // 
+            // btnPredict
+            // 
+            this.btnPredict.Location = new System.Drawing.Point(316, 641);
+            this.btnPredict.Name = "btnPredict";
+            this.btnPredict.Size = new System.Drawing.Size(147, 37);
+            this.btnPredict.TabIndex = 34;
+            this.btnPredict.Text = "Predict Crops";
+            this.btnPredict.UseVisualStyleBackColor = true;
+            this.btnPredict.Click += new System.EventHandler(this.btnPredict_Click);
+            // 
             // FarmerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
@@ -270,6 +281,7 @@
             this.BackColor = System.Drawing.Color.LightGreen;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1350, 681);
+            this.Controls.Add(this.btnPredict);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.environmentDataGridView);
@@ -326,5 +338,6 @@
         private System.Windows.Forms.DataGridView environmentDataGridView;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button btnPredict;
     }
 }

@@ -49,6 +49,7 @@
             this.btnLandUsage = new System.Windows.Forms.Button();
             this.lblLandUsage = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -131,6 +132,7 @@
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button4.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.button4.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.DarkGreen;
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
@@ -164,7 +166,7 @@
             // 
             this.btnPredict.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPredict.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnPredict.Cursor = System.Windows.Forms.Cursors.UpArrow;
+            this.btnPredict.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.btnPredict.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPredict.ForeColor = System.Drawing.Color.DarkGreen;
             this.btnPredict.Image = ((System.Drawing.Image)(resources.GetObject("btnPredict.Image")));
@@ -185,8 +187,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.panel1.Controls.Add(this.btnReset);
             this.panel1.Controls.Add(this.btnPredict);
             this.panel1.Controls.Add(this.lblPredictedYield);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel1.Font = new System.Drawing.Font("Microsoft YaHei UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.ForeColor = System.Drawing.Color.DarkGreen;
             this.panel1.Location = new System.Drawing.Point(159, 189);
@@ -207,6 +211,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.Controls.Add(this.button3);
+            this.panel2.Cursor = System.Windows.Forms.Cursors.Default;
             this.panel2.ForeColor = System.Drawing.Color.DarkGreen;
             this.panel2.Location = new System.Drawing.Point(159, 449);
             this.panel2.Name = "panel2";
@@ -217,6 +222,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel4.Controls.Add(this.button5);
+            this.panel4.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel4.ForeColor = System.Drawing.Color.DarkGreen;
             this.panel4.Location = new System.Drawing.Point(717, 449);
             this.panel4.Name = "panel4";
@@ -255,6 +261,7 @@
             // 
             this.btnLandUsage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLandUsage.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnLandUsage.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.btnLandUsage.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLandUsage.ForeColor = System.Drawing.Color.DarkGreen;
             this.btnLandUsage.Image = ((System.Drawing.Image)(resources.GetObject("btnLandUsage.Image")));
@@ -289,6 +296,16 @@
             this.pictureBox2.TabIndex = 33;
             this.pictureBox2.TabStop = false;
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(383, 174);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 26;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // OfficerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
@@ -312,7 +329,7 @@
             this.Controls.Add(this.lblNic);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
-            this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "OfficerForm";
@@ -351,5 +368,6 @@
         private System.Windows.Forms.Label lblLandUsage;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblPredictedYield;
+        private System.Windows.Forms.Button btnReset;
     }
 }
