@@ -6,62 +6,58 @@ using ThirasaraTest;
 
 public class UserManagement
 {
-    string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
     private static UserManagement instance;
-    public string UserNic { get; set; }
+
+    private readonly string connectionString =
+        ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
 
     private UserManagement()
     {
     }
 
+    public string UserNic { get; set; }
+
     public static UserManagement Instance
     {
         get
         {
-            if (instance == null)
-            {
-                instance = new UserManagement();
-            }
+            if (instance == null) instance = new UserManagement();
             return instance;
         }
     }
 
     public string Login(string email, string password)
     {
-        Hashing hashing = new Hashing();
+        var hashing = new Hashing();
         try
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                string query = "SELECT nic, password_hashed, account_type FROM user_data WHERE email = @email";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                var query = "SELECT nic, password_hashed, account_type FROM user_data WHERE email = @email";
+                using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@email", email);
 
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            string nic = (string)reader["nic"];
-                            byte[] storedHash = (byte[])reader["password_hashed"];
-                            byte[] passwordHash = hashing.CalculateSHA1Hash(password);
+                            var nic = (string)reader["nic"];
+                            var storedHash = (byte[])reader["password_hashed"];
+                            var passwordHash = hashing.CalculateSHA1Hash(password);
                             if (hashing.CompareByteArrays(passwordHash, storedHash))
                             {
-                                string userType = (string)reader["account_type"];
-                                UserManagement.Instance.UserNic = nic;
+                                var userType = (string)reader["account_type"];
+                                Instance.UserNic = nic;
                                 return userType;
                             }
-                            else
-                            {
-                                throw new Exception("Invalid email or password. Please try again.");
-                            }
+
+                            throw new Exception("Invalid email or password. Please try again.");
                         }
-                        else
-                        {
-                            throw new Exception("Read Failed");
-                        }
+
+                        throw new Exception("Read Failed");
                     }
                 }
             }
@@ -70,6 +66,7 @@ public class UserManagement
         {
             MessageBox.Show(ex.Message, "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
         return "fail";
     }
 }

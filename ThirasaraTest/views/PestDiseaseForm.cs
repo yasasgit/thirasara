@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace ThirasaraTest
 {
@@ -8,9 +9,10 @@ namespace ThirasaraTest
         {
             InitializeComponent();
         }
-        private void PestDiseaseForm_Load(object sender, System.EventArgs e)
+
+        private void PestDiseaseForm_Load(object sender, EventArgs e)
         {
-            AdvancedAlgorithm mdntest = new AdvancedAlgorithm();
+            var mdntest = new AdvancedAlgorithm();
             txtApriori.Text = mdntest.PerformAprioriAnalysis();
         }
     }

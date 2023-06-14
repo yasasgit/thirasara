@@ -6,9 +6,8 @@ namespace ThirasaraTest
 {
     public partial class LoginForm : Form
     {
-        public string emailPattern = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
-
         private static LoginForm loginFormInstance;
+        public string emailPattern = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
 
         private LoginForm()
         {
@@ -20,10 +19,7 @@ namespace ThirasaraTest
         {
             get
             {
-                if (loginFormInstance == null)
-                {
-                    loginFormInstance = new LoginForm();
-                }
+                if (loginFormInstance == null) loginFormInstance = new LoginForm();
                 return loginFormInstance;
             }
         }
@@ -45,39 +41,37 @@ namespace ThirasaraTest
                 errorProvider1.Clear();
             }
         }
+
         private void txt_email_TextChanged(object sender, EventArgs e)
         {
             if (Regex.IsMatch(txtEmail.Text, emailPattern) == false)
-            {
                 errorProvider1.SetError(txtEmail, "please Enter Valid Email Address");
-            }
             else
-            {
                 errorProvider1.Clear();
-            }
         }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
-                string email = txtEmail.Text.Trim();
-                string password = txtPassword.Text.Trim();
+                var email = txtEmail.Text.Trim();
+                var password = txtPassword.Text.Trim();
 
-                string userType = UserManagement.Instance.Login(email, password);
+                var userType = UserManagement.Instance.Login(email, password);
 
                 switch (userType)
                 {
                     case "officer":
                         MessageBox.Show("Welcome Officer!");
-                        LoginForm.Instance.Hide();
-                        OfficerForm adminForm = new OfficerForm();
+                        Instance.Hide();
+                        var adminForm = new OfficerForm();
                         adminForm.Show();
                         break;
 
                     case "cultivator":
                         MessageBox.Show("Welcome Cultivator!");
-                        LoginForm.Instance.Hide();
-                        FarmerForm userForm = new FarmerForm();
+                        Instance.Hide();
+                        var userForm = new FarmerForm();
                         userForm.Show();
                         break;
 
@@ -87,7 +81,8 @@ namespace ThirasaraTest
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 

@@ -6,13 +6,12 @@ namespace ThirasaraTest
     public class Hashing
     {
         //Passwords will be hashed using SHA-1 algorithm
-        public Hashing() { }
 
         public byte[] CalculateSHA1Hash(string password)
         {
-            using (SHA1Managed sha1 = new SHA1Managed())
+            using (var sha1 = new SHA1Managed())
             {
-                byte[] inputBytes = Encoding.UTF8.GetBytes(password);
+                var inputBytes = Encoding.UTF8.GetBytes(password);
                 return sha1.ComputeHash(inputBytes);
             }
         }
@@ -22,11 +21,9 @@ namespace ThirasaraTest
             if (array1.Length != array2.Length)
                 return false;
 
-            for (int i = 0; i < array1.Length; i++)
-            {
+            for (var i = 0; i < array1.Length; i++)
                 if (array1[i] != array2[i])
                     return false;
-            }
             return true;
         }
     }

@@ -7,7 +7,9 @@ namespace ThirasaraTest
 {
     public partial class AddFieldForm : Form
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+        private readonly string connectionString =
+            ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+
         public AddFieldForm()
         {
             InitializeComponent();
@@ -17,23 +19,23 @@ namespace ThirasaraTest
         {
             try
             {
-                decimal sizeHa = decimal.Parse(sizeHaTextBox.Text);
-                string fieldLocation = fieldLocationTextBox.Text;
-                byte soilNitrogen = byte.Parse(soilNitrogenTextBox.Text);
-                byte soilPhosphorus = byte.Parse(soilPhosphorusTextBox.Text);
-                byte soilPotassium = byte.Parse(soilPotassiumTextBox.Text);
-                decimal soilPh = decimal.Parse(soilPhTextBox.Text);
-                short soilTexture = short.Parse(soilTextureComboBox.Text);
+                var sizeHa = decimal.Parse(sizeHaTextBox.Text);
+                var fieldLocation = fieldLocationTextBox.Text;
+                var soilNitrogen = byte.Parse(soilNitrogenTextBox.Text);
+                var soilPhosphorus = byte.Parse(soilPhosphorusTextBox.Text);
+                var soilPotassium = byte.Parse(soilPotassiumTextBox.Text);
+                var soilPh = decimal.Parse(soilPhTextBox.Text);
+                var soilTexture = short.Parse(soilTextureComboBox.Text);
 
                 Console.Out.WriteLine(soilTexture);
 
-                string query = "INSERT INTO field_data (cultivator, size_ha, field_location, soil_nitrogen_kg_ha, " +
-                    "soil_phosphorus_kg_ha, soil_potassium_kg_ha, soil_ph, soil_texture) " +
-                    "VALUES (@cultivator, @sizeHa, @fieldLocation, @soilNitrogen, @soilPhosphorus, " +
-                    "@soilPotassium, @soilPh, @soilTexture)";
+                var query = "INSERT INTO field_data (cultivator, size_ha, field_location, soil_nitrogen_kg_ha, " +
+                            "soil_phosphorus_kg_ha, soil_potassium_kg_ha, soil_ph, soil_texture) " +
+                            "VALUES (@cultivator, @sizeHa, @fieldLocation, @soilNitrogen, @soilPhosphorus, " +
+                            "@soilPotassium, @soilPh, @soilTexture)";
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@cultivator", UserManagement.Instance.UserNic);
                     command.Parameters.AddWithValue("@sizeHa", sizeHa);
@@ -53,7 +55,8 @@ namespace ThirasaraTest
             {
                 MessageBox.Show("Error inserting data: " + ex.Message);
             }
-            this.Close();
+
+            Close();
         }
     }
 }
