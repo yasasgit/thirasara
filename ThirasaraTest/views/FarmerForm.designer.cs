@@ -29,14 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FarmerForm));
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.lblNic = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.fieldDataGridView = new System.Windows.Forms.DataGridView();
             this.btnPnD = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
@@ -49,7 +44,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnPredict = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fieldDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fertilizerDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cropCyleDataGridView)).BeginInit();
@@ -57,49 +51,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(1184, 90);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(154, 21);
-            this.textBox3.TabIndex = 15;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(1184, 57);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(154, 21);
-            this.textBox2.TabIndex = 14;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(1086, 93);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 16);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Phone No";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(1086, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 16);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "User Name";
-            // 
             // lblNic
             // 
             this.lblNic.AutoSize = true;
             this.lblNic.BackColor = System.Drawing.Color.Transparent;
-            this.lblNic.Location = new System.Drawing.Point(1086, 25);
+            this.lblNic.Location = new System.Drawing.Point(1209, 25);
             this.lblNic.Name = "lblNic";
-            this.lblNic.Size = new System.Drawing.Size(27, 16);
+            this.lblNic.Size = new System.Drawing.Size(33, 19);
             this.lblNic.TabIndex = 9;
             this.lblNic.Text = "NIC";
             // 
@@ -112,7 +70,7 @@
             this.label6.ForeColor = System.Drawing.Color.Navy;
             this.label6.Location = new System.Drawing.Point(441, 43);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(228, 26);
+            this.label6.Size = new System.Drawing.Size(298, 33);
             this.label6.TabIndex = 18;
             this.label6.Text = "Cultivater Dashboard";
             // 
@@ -122,30 +80,18 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Navy;
-            this.label7.Location = new System.Drawing.Point(51, 183);
+            this.label7.Location = new System.Drawing.Point(51, 155);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 19);
+            this.label7.Size = new System.Drawing.Size(100, 24);
             this.label7.TabIndex = 19;
             this.label7.Text = "My Fields";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(937, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(146, 110);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // fieldDataGridView
             // 
             this.fieldDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.fieldDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.fieldDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.fieldDataGridView.Location = new System.Drawing.Point(28, 221);
+            this.fieldDataGridView.Location = new System.Drawing.Point(28, 193);
             this.fieldDataGridView.Name = "fieldDataGridView";
             this.fieldDataGridView.RowHeadersWidth = 51;
             this.fieldDataGridView.Size = new System.Drawing.Size(392, 210);
@@ -154,7 +100,7 @@
             // 
             // btnPnD
             // 
-            this.btnPnD.Location = new System.Drawing.Point(148, 641);
+            this.btnPnD.Location = new System.Drawing.Point(148, 623);
             this.btnPnD.Name = "btnPnD";
             this.btnPnD.Size = new System.Drawing.Size(147, 37);
             this.btnPnD.TabIndex = 24;
@@ -165,7 +111,7 @@
             // btnLogout
             // 
             this.btnLogout.BackColor = System.Drawing.Color.LightPink;
-            this.btnLogout.Location = new System.Drawing.Point(1268, 642);
+            this.btnLogout.Location = new System.Drawing.Point(1234, 623);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(75, 31);
             this.btnLogout.TabIndex = 25;
@@ -178,7 +124,7 @@
             this.fertilizerDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.fertilizerDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.fertilizerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.fertilizerDataGridView.Location = new System.Drawing.Point(882, 223);
+            this.fertilizerDataGridView.Location = new System.Drawing.Point(882, 195);
             this.fertilizerDataGridView.Name = "fertilizerDataGridView";
             this.fertilizerDataGridView.RowHeadersWidth = 51;
             this.fertilizerDataGridView.Size = new System.Drawing.Size(406, 210);
@@ -186,7 +132,7 @@
             // 
             // btnAddField
             // 
-            this.btnAddField.Location = new System.Drawing.Point(28, 641);
+            this.btnAddField.Location = new System.Drawing.Point(28, 623);
             this.btnAddField.Name = "btnAddField";
             this.btnAddField.Size = new System.Drawing.Size(101, 37);
             this.btnAddField.TabIndex = 27;
@@ -199,7 +145,7 @@
             this.cropCyleDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.cropCyleDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.cropCyleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.cropCyleDataGridView.Location = new System.Drawing.Point(28, 493);
+            this.cropCyleDataGridView.Location = new System.Drawing.Point(28, 465);
             this.cropCyleDataGridView.Name = "cropCyleDataGridView";
             this.cropCyleDataGridView.RowHeadersWidth = 51;
             this.cropCyleDataGridView.Size = new System.Drawing.Size(1281, 135);
@@ -212,9 +158,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(464, 183);
+            this.label1.Location = new System.Drawing.Point(464, 155);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 19);
+            this.label1.Size = new System.Drawing.Size(80, 24);
             this.label1.TabIndex = 29;
             this.label1.Text = "My Env";
             // 
@@ -224,9 +170,9 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(51, 453);
+            this.label3.Location = new System.Drawing.Point(51, 425);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 19);
+            this.label3.Size = new System.Drawing.Size(101, 24);
             this.label3.TabIndex = 30;
             this.label3.Text = "My Crops";
             // 
@@ -235,7 +181,7 @@
             this.environmentDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.environmentDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.environmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.environmentDataGridView.Location = new System.Drawing.Point(447, 222);
+            this.environmentDataGridView.Location = new System.Drawing.Point(447, 194);
             this.environmentDataGridView.Name = "environmentDataGridView";
             this.environmentDataGridView.RowHeadersWidth = 51;
             this.environmentDataGridView.Size = new System.Drawing.Size(408, 210);
@@ -247,9 +193,9 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Navy;
-            this.label8.Location = new System.Drawing.Point(911, 183);
+            this.label8.Location = new System.Drawing.Point(911, 155);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 19);
+            this.label8.Size = new System.Drawing.Size(92, 24);
             this.label8.TabIndex = 32;
             this.label8.Text = "Fertilizer";
             // 
@@ -266,7 +212,7 @@
             // 
             // btnPredict
             // 
-            this.btnPredict.Location = new System.Drawing.Point(316, 641);
+            this.btnPredict.Location = new System.Drawing.Point(316, 623);
             this.btnPredict.Name = "btnPredict";
             this.btnPredict.Size = new System.Drawing.Size(147, 37);
             this.btnPredict.TabIndex = 34;
@@ -276,7 +222,7 @@
             // 
             // FarmerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGreen;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
@@ -295,18 +241,13 @@
             this.Controls.Add(this.fieldDataGridView);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblNic);
-            this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FarmerForm";
             this.Text = "Thirasara Dashboard";
             this.Load += new System.EventHandler(this.UserForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fieldDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fertilizerDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cropCyleDataGridView)).EndInit();
@@ -318,12 +259,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNic;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
