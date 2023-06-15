@@ -44,6 +44,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnPredict = new System.Windows.Forms.Button();
+            this.lblNicNo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fieldDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fertilizerDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cropCyleDataGridView)).BeginInit();
@@ -55,11 +56,11 @@
             // 
             this.lblNic.AutoSize = true;
             this.lblNic.BackColor = System.Drawing.Color.Transparent;
-            this.lblNic.Location = new System.Drawing.Point(1209, 25);
+            this.lblNic.Location = new System.Drawing.Point(1231, 25);
             this.lblNic.Name = "lblNic";
-            this.lblNic.Size = new System.Drawing.Size(33, 19);
+            this.lblNic.Size = new System.Drawing.Size(29, 16);
             this.lblNic.TabIndex = 9;
-            this.lblNic.Text = "NIC";
+            this.lblNic.Text = "text";
             // 
             // label6
             // 
@@ -70,9 +71,9 @@
             this.label6.ForeColor = System.Drawing.Color.Navy;
             this.label6.Location = new System.Drawing.Point(441, 43);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(298, 33);
+            this.label6.Size = new System.Drawing.Size(229, 26);
             this.label6.TabIndex = 18;
-            this.label6.Text = "Cultivater Dashboard";
+            this.label6.Text = "Cultivator Dashboard";
             // 
             // label7
             // 
@@ -82,7 +83,7 @@
             this.label7.ForeColor = System.Drawing.Color.Navy;
             this.label7.Location = new System.Drawing.Point(51, 155);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(100, 24);
+            this.label7.Size = new System.Drawing.Size(81, 19);
             this.label7.TabIndex = 19;
             this.label7.Text = "My Fields";
             // 
@@ -160,7 +161,7 @@
             this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(464, 155);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 24);
+            this.label1.Size = new System.Drawing.Size(65, 19);
             this.label1.TabIndex = 29;
             this.label1.Text = "My Env";
             // 
@@ -172,7 +173,7 @@
             this.label3.ForeColor = System.Drawing.Color.Navy;
             this.label3.Location = new System.Drawing.Point(51, 425);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 24);
+            this.label3.Size = new System.Drawing.Size(82, 19);
             this.label3.TabIndex = 30;
             this.label3.Text = "My Crops";
             // 
@@ -195,7 +196,7 @@
             this.label8.ForeColor = System.Drawing.Color.Navy;
             this.label8.Location = new System.Drawing.Point(911, 155);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(92, 24);
+            this.label8.Size = new System.Drawing.Size(75, 19);
             this.label8.TabIndex = 32;
             this.label8.Text = "Fertilizer";
             // 
@@ -220,13 +221,24 @@
             this.btnPredict.UseVisualStyleBackColor = true;
             this.btnPredict.Click += new System.EventHandler(this.btnPredict_Click);
             // 
+            // lblNicNo
+            // 
+            this.lblNicNo.AutoSize = true;
+            this.lblNicNo.BackColor = System.Drawing.Color.Transparent;
+            this.lblNicNo.Location = new System.Drawing.Point(1189, 25);
+            this.lblNicNo.Name = "lblNicNo";
+            this.lblNicNo.Size = new System.Drawing.Size(27, 16);
+            this.lblNicNo.TabIndex = 35;
+            this.lblNicNo.Text = "NIC";
+            // 
             // FarmerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGreen;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1350, 681);
+            this.Controls.Add(this.lblNicNo);
             this.Controls.Add(this.btnPredict);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label8);
@@ -274,5 +286,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnPredict;
+        private System.Windows.Forms.Label lblNicNo;
     }
 }

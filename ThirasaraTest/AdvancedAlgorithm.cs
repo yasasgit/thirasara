@@ -16,7 +16,7 @@ public class AdvancedAlgorithm
         ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
 
     [Obsolete]
-    public void PerformLinearRegression()
+    public void PerformLinearRegression(string nic)
     {
         var reader = new CsvReader("model/train_data.csv", true);
         var ols = new OrdinaryLeastSquares
@@ -63,28 +63,41 @@ public class AdvancedAlgorithm
         //testing
         using (var conn = new SqlConnection(connectionString))
         {
-            var crop_cycle_id = 1163;
             conn.Open();
-
             var testDataQuery =
-                "SELECT plant_density_ha, temperature_c, rainfall_irrigation_mm, humidity_perc, wind_speed_m_s, sunlight_exposure_h_day, soil_ph, soil_texture_level, severity_level FROM crop_cycle_data AS ccd JOIN environment_data AS ed ON ed.crop_cycle = ccd.crop_cycle_id JOIN field_data AS fd ON ccd.field = fd.field_id JOIN soil_texture_data AS std ON fd.soil_texture = std.soil_texture_id JOIN fertilizer_data AS fert ON ccd.fertilizer = fert.fertilizer_id JOIN crop_cycle_pest_disease AS ccpd ON ccd.crop_cycle_id = ccpd.crop_cycle JOIN pest_disease_data AS pd ON pd.pest_disease_id = ccpd.pest_disease WHERE crop_cycle_id = @CropCycleId";
+                "SELECT plant_density_ha, temperature_c, rainfall_irrigation_mm, humidity_perc, wind_speed_m_s, sunlight_exposure_h_day, soil_ph, soil_texture_level, severity_level, crop_cycle_id FROM crop_cycle_data AS ccd JOIN ( SELECT crop_cycle, MAX(update_date) AS LATEST FROM environment_data GROUP BY crop_cycle ) AS max_env ON ccd.crop_cycle_id = max_env.crop_cycle JOIN environment_data AS ed ON ed.crop_cycle = max_env.crop_cycle AND ed.update_date = max_env.LATEST JOIN field_data AS fd ON ccd.field = fd.field_id JOIN user_data AS ud ON ud.nic = fd.cultivator JOIN soil_texture_data AS std ON fd.soil_texture = std.soil_texture_id JOIN fertilizer_data AS fert ON ccd.fertilizer = fert.fertilizer_id JOIN crop_cycle_pest_disease AS ccpd ON ccd.crop_cycle_id = ccpd.crop_cycle JOIN pest_disease_data AS pd ON pd.pest_disease_id = ccpd.pest_disease WHERE nic = @Nic ORDER BY crop_cycle_id";
             var testDataCommand = new SqlCommand(testDataQuery, conn);
-            testDataCommand.Parameters.AddWithValue("@CropCycleId", crop_cycle_id);
+            testDataCommand.Parameters.AddWithValue("@Nic", nic);
             var testReader = testDataCommand.ExecuteReader();
 
             var testInputs = new List<double[]>();
+            var cropCycleIds = new List<int>();
+
             while (testReader.Read())
             {
                 var testValues = new double[9];
                 for (var i = 0; i < 9; i++) testValues[i] = Convert.ToDouble(testReader[i]);
                 testInputs.Add(testValues);
+                cropCycleIds.Add(testReader.GetInt16(9));
             }
 
             testReader.Close();
 
             var prediction = regression.Transform(testInputs.ToArray());
-            Console.WriteLine("Predicted values:");
-            foreach (var value in prediction) Console.WriteLine(value);
+
+            var updateQuery =
+                "UPDATE crop_cycle_data SET predicted_yield_kg_ha = @PredictedValue WHERE crop_cycle_id = @CropCycleId";
+            var updateCommand = new SqlCommand(updateQuery, conn);
+            var predictedValueParam = updateCommand.Parameters.Add("@PredictedValue", SqlDbType.Float);
+            var cropCycleIdParam = updateCommand.Parameters.Add("@CropCycleId", SqlDbType.Int);
+
+            for (var i = 0; i < prediction.Length; i++)
+            {
+                predictedValueParam.Value = prediction[i];
+                cropCycleIdParam.Value = cropCycleIds[i];
+                updateCommand.ExecuteNonQuery();
+            }
+
             conn.Close();
         }
     }
@@ -143,7 +156,7 @@ public class AdvancedAlgorithm
                         var antecedent = string.Join(", ", antecedentLabels);
                         var consequent = string.Join(", ", consequentLabels);
                         sb.AppendLine(
-                            $"If your crop cycle have \"{antecedent}\" you may get \"{consequent}\" support: {rule.Support}, confidence: {rule.Confidence}");
+                            $"If your crop cycle have {antecedent} you have a confidence {rule.Confidence} of getting  {consequent}. support: {rule.Support}");
                     }
 
                     return sb.ToString();

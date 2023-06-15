@@ -14,7 +14,6 @@ namespace ThirasaraTest
         public OfficerForm()
         {
             InitializeComponent();
-            WindowState = FormWindowState.Maximized;
             lblNic.Text = UserManagement.Instance.UserNic;
         }
 
@@ -30,6 +29,7 @@ namespace ThirasaraTest
         {
             using (var connection = new SqlConnection(connectionString))
             {
+                var dataTable = new DataTable();
                 connection.Open();
                 using (var command = new SqlCommand("SELECT dbo.GetTotalLandUsage() AS TotalLandUsage", connection))
                 {
@@ -37,12 +37,6 @@ namespace ThirasaraTest
                     lblLandUsage.Text = totalLandUsage.ToString();
                 }
 
-                connection.Close();
-            }
-
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
                 using (var command = new SqlCommand("SELECT dbo.GetTotalPredictedYield() AS TotalPredictedYield",
                            connection))
                 {
@@ -50,6 +44,17 @@ namespace ThirasaraTest
                     lblPredictedYield.Text = predictedYield.ToString();
                 }
 
+                using (var command = new SqlCommand(
+                           "SELECT TOP 3 ud.first_name, ud.last_name, SUM(ccd.yield_kg_ha) AS total_yield, SUM(fd.size_ha) AS total_size, ud.phone_number FROM user_data AS ud JOIN field_data AS fd ON ud.nic = fd.cultivator JOIN crop_cycle_data AS ccd ON fd.field_id = ccd.field GROUP BY ud.first_name, ud.last_name, ud.phone_number ORDER BY total_yield DESC",
+                           connection))
+                {
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+
+                topFarmerDataGridView.DataSource = dataTable;
                 connection.Close();
             }
         }
@@ -65,6 +70,9 @@ namespace ThirasaraTest
                     connection.Open();
                     command.ExecuteNonQuery();
                     MessageBox.Show("Predictions have been reset");
+                    Form currentForm = new OfficerForm();
+                    Close();
+                    currentForm.Show();
                 }
                 catch (Exception ex)
                 {

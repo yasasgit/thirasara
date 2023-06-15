@@ -134,7 +134,7 @@ namespace ThirasaraTest
         private void btnPredict_Click(object sender, EventArgs e)
         {
             var mdntest = new AdvancedAlgorithm();
-            mdntest.PerformLinearRegression();
+            mdntest.PerformLinearRegression(UserManagement.Instance.UserNic);
             MessageBox.Show("Predictions Entered to the Database");
             Form currentForm = new FarmerForm();
             Close();

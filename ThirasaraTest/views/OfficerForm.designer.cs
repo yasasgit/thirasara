@@ -36,6 +36,7 @@
             this.btnPredict = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.topFarmerDataGridView = new System.Windows.Forms.DataGridView();
             this.btnReset = new System.Windows.Forms.Button();
             this.lblPredictedYield = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -45,7 +46,9 @@
             this.btnLandUsage = new System.Windows.Forms.Button();
             this.lblLandUsage = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lblNicNo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.topFarmerDataGridView)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -55,11 +58,11 @@
             // 
             this.lblNic.AutoSize = true;
             this.lblNic.BackColor = System.Drawing.Color.Transparent;
-            this.lblNic.Location = new System.Drawing.Point(1075, 25);
+            this.lblNic.Location = new System.Drawing.Point(1218, 28);
             this.lblNic.Name = "lblNic";
-            this.lblNic.Size = new System.Drawing.Size(33, 19);
+            this.lblNic.Size = new System.Drawing.Size(29, 16);
             this.lblNic.TabIndex = 9;
-            this.lblNic.Text = "NIC";
+            this.lblNic.Text = "text";
             // 
             // label6
             // 
@@ -70,7 +73,7 @@
             this.label6.ForeColor = System.Drawing.Color.Navy;
             this.label6.Location = new System.Drawing.Point(478, 42);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(259, 33);
+            this.label6.Size = new System.Drawing.Size(198, 26);
             this.label6.TabIndex = 18;
             this.label6.Text = "Officer Dashboard";
             // 
@@ -83,7 +86,7 @@
             this.button4.ForeColor = System.Drawing.Color.DarkGreen;
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(717, 297);
+            this.button4.Location = new System.Drawing.Point(124, 10);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(238, 57);
             this.button4.TabIndex = 26;
@@ -117,10 +120,10 @@
             this.btnPredict.ForeColor = System.Drawing.Color.DarkGreen;
             this.btnPredict.Image = ((System.Drawing.Image)(resources.GetObject("btnPredict.Image")));
             this.btnPredict.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnPredict.Location = new System.Drawing.Point(124, 0);
+            this.btnPredict.Location = new System.Drawing.Point(255, 314);
             this.btnPredict.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPredict.Name = "btnPredict";
-            this.btnPredict.Size = new System.Drawing.Size(226, 48);
+            this.btnPredict.Size = new System.Drawing.Size(238, 97);
             this.btnPredict.TabIndex = 24;
             this.btnPredict.Text = "Crop Prediction";
             this.btnPredict.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -133,20 +136,28 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.panel1.Controls.Add(this.btnReset);
-            this.panel1.Controls.Add(this.btnPredict);
-            this.panel1.Controls.Add(this.lblPredictedYield);
+            this.panel1.Controls.Add(this.topFarmerDataGridView);
+            this.panel1.Controls.Add(this.button4);
             this.panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel1.Font = new System.Drawing.Font("Microsoft YaHei UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.ForeColor = System.Drawing.Color.DarkGreen;
-            this.panel1.Location = new System.Drawing.Point(159, 189);
+            this.panel1.Location = new System.Drawing.Point(717, 198);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(484, 213);
             this.panel1.TabIndex = 27;
             // 
+            // topFarmerDataGridView
+            // 
+            this.topFarmerDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.topFarmerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.topFarmerDataGridView.Location = new System.Drawing.Point(18, 86);
+            this.topFarmerDataGridView.Name = "topFarmerDataGridView";
+            this.topFarmerDataGridView.Size = new System.Drawing.Size(446, 104);
+            this.topFarmerDataGridView.TabIndex = 27;
+            // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(383, 174);
+            this.btnReset.Location = new System.Drawing.Point(337, 378);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 26;
@@ -157,9 +168,9 @@
             // lblPredictedYield
             // 
             this.lblPredictedYield.AutoSize = true;
-            this.lblPredictedYield.Location = new System.Drawing.Point(218, 106);
+            this.lblPredictedYield.Location = new System.Drawing.Point(383, 327);
             this.lblPredictedYield.Name = "lblPredictedYield";
-            this.lblPredictedYield.Size = new System.Drawing.Size(37, 19);
+            this.lblPredictedYield.Size = new System.Drawing.Size(29, 16);
             this.lblPredictedYield.TabIndex = 25;
             this.lblPredictedYield.Text = "text";
             // 
@@ -222,10 +233,10 @@
             this.btnLandUsage.ForeColor = System.Drawing.Color.DarkGreen;
             this.btnLandUsage.Image = ((System.Drawing.Image)(resources.GetObject("btnLandUsage.Image")));
             this.btnLandUsage.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnLandUsage.Location = new System.Drawing.Point(717, 141);
+            this.btnLandUsage.Location = new System.Drawing.Point(255, 208);
             this.btnLandUsage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLandUsage.Name = "btnLandUsage";
-            this.btnLandUsage.Size = new System.Drawing.Size(238, 73);
+            this.btnLandUsage.Size = new System.Drawing.Size(238, 98);
             this.btnLandUsage.TabIndex = 23;
             this.btnLandUsage.Text = "Land Usage";
             this.btnLandUsage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -235,9 +246,9 @@
             // 
             this.lblLandUsage.AutoSize = true;
             this.lblLandUsage.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lblLandUsage.Location = new System.Drawing.Point(806, 215);
+            this.lblLandUsage.Location = new System.Drawing.Point(383, 220);
             this.lblLandUsage.Name = "lblLandUsage";
-            this.lblLandUsage.Size = new System.Drawing.Size(35, 19);
+            this.lblLandUsage.Size = new System.Drawing.Size(29, 16);
             this.lblLandUsage.TabIndex = 24;
             this.lblLandUsage.Text = "text";
             // 
@@ -252,21 +263,34 @@
             this.pictureBox2.TabIndex = 33;
             this.pictureBox2.TabStop = false;
             // 
+            // lblNicNo
+            // 
+            this.lblNicNo.AutoSize = true;
+            this.lblNicNo.BackColor = System.Drawing.Color.Transparent;
+            this.lblNicNo.Location = new System.Drawing.Point(1174, 28);
+            this.lblNicNo.Name = "lblNicNo";
+            this.lblNicNo.Size = new System.Drawing.Size(27, 16);
+            this.lblNicNo.TabIndex = 36;
+            this.lblNicNo.Text = "NIC";
+            // 
             // OfficerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1350, 681);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.lblNicNo);
+            this.Controls.Add(this.lblPredictedYield);
+            this.Controls.Add(this.btnPredict);
             this.Controls.Add(this.lblLandUsage);
+            this.Controls.Add(this.btnLandUsage);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.btnLandUsage);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblNic);
             this.Controls.Add(this.panel1);
@@ -278,7 +302,7 @@
             this.Text = "Thirasara Dashboard";
             this.Load += new System.EventHandler(this.OfficerForm_Load);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.topFarmerDataGridView)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -304,5 +328,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblPredictedYield;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Label lblNicNo;
+        private System.Windows.Forms.DataGridView topFarmerDataGridView;
     }
 }
