@@ -83,9 +83,9 @@
             this.label7.ForeColor = System.Drawing.Color.Navy;
             this.label7.Location = new System.Drawing.Point(51, 155);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 19);
+            this.label7.Size = new System.Drawing.Size(111, 19);
             this.label7.TabIndex = 19;
-            this.label7.Text = "My Fields";
+            this.label7.Text = "My Field Data";
             // 
             // fieldDataGridView
             // 
@@ -95,7 +95,7 @@
             this.fieldDataGridView.Location = new System.Drawing.Point(28, 193);
             this.fieldDataGridView.Name = "fieldDataGridView";
             this.fieldDataGridView.RowHeadersWidth = 51;
-            this.fieldDataGridView.Size = new System.Drawing.Size(392, 210);
+            this.fieldDataGridView.Size = new System.Drawing.Size(392, 170);
             this.fieldDataGridView.TabIndex = 23;
             this.fieldDataGridView.SelectionChanged += new System.EventHandler(this.fieldDataGridView_SelectionChanged);
             // 
@@ -125,10 +125,10 @@
             this.fertilizerDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.fertilizerDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.fertilizerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.fertilizerDataGridView.Location = new System.Drawing.Point(882, 195);
+            this.fertilizerDataGridView.Location = new System.Drawing.Point(883, 184);
             this.fertilizerDataGridView.Name = "fertilizerDataGridView";
             this.fertilizerDataGridView.RowHeadersWidth = 51;
-            this.fertilizerDataGridView.Size = new System.Drawing.Size(406, 210);
+            this.fertilizerDataGridView.Size = new System.Drawing.Size(406, 179);
             this.fertilizerDataGridView.TabIndex = 26;
             // 
             // btnAddField
@@ -146,10 +146,10 @@
             this.cropCyleDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.cropCyleDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.cropCyleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.cropCyleDataGridView.Location = new System.Drawing.Point(28, 465);
+            this.cropCyleDataGridView.Location = new System.Drawing.Point(28, 438);
             this.cropCyleDataGridView.Name = "cropCyleDataGridView";
             this.cropCyleDataGridView.RowHeadersWidth = 51;
-            this.cropCyleDataGridView.Size = new System.Drawing.Size(1281, 135);
+            this.cropCyleDataGridView.Size = new System.Drawing.Size(1281, 162);
             this.cropCyleDataGridView.TabIndex = 28;
             this.cropCyleDataGridView.SelectionChanged += new System.EventHandler(this.cropCyleDataGridView_SelectionChanged);
             // 
@@ -161,9 +161,9 @@
             this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(464, 155);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 19);
+            this.label1.Size = new System.Drawing.Size(172, 19);
             this.label1.TabIndex = 29;
-            this.label1.Text = "My Env";
+            this.label1.Text = "My Environment Data";
             // 
             // label3
             // 
@@ -171,7 +171,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(51, 425);
+            this.label3.Location = new System.Drawing.Point(51, 391);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 19);
             this.label3.TabIndex = 30;
@@ -185,7 +185,7 @@
             this.environmentDataGridView.Location = new System.Drawing.Point(447, 194);
             this.environmentDataGridView.Name = "environmentDataGridView";
             this.environmentDataGridView.RowHeadersWidth = 51;
-            this.environmentDataGridView.Size = new System.Drawing.Size(408, 210);
+            this.environmentDataGridView.Size = new System.Drawing.Size(408, 169);
             this.environmentDataGridView.TabIndex = 31;
             // 
             // label8
@@ -196,9 +196,9 @@
             this.label8.ForeColor = System.Drawing.Color.Navy;
             this.label8.Location = new System.Drawing.Point(911, 155);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 19);
+            this.label8.Size = new System.Drawing.Size(149, 19);
             this.label8.TabIndex = 32;
-            this.label8.Text = "Fertilizer";
+            this.label8.Text = "Required Fertilizer";
             // 
             // pictureBox2
             // 

@@ -157,7 +157,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(337, 378);
+            this.btnReset.Location = new System.Drawing.Point(265, 374);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 26;
@@ -168,7 +168,8 @@
             // lblPredictedYield
             // 
             this.lblPredictedYield.AutoSize = true;
-            this.lblPredictedYield.Location = new System.Drawing.Point(383, 327);
+            this.lblPredictedYield.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblPredictedYield.Location = new System.Drawing.Point(395, 381);
             this.lblPredictedYield.Name = "lblPredictedYield";
             this.lblPredictedYield.Size = new System.Drawing.Size(29, 16);
             this.lblPredictedYield.TabIndex = 25;
@@ -246,7 +247,7 @@
             // 
             this.lblLandUsage.AutoSize = true;
             this.lblLandUsage.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lblLandUsage.Location = new System.Drawing.Point(383, 220);
+            this.lblLandUsage.Location = new System.Drawing.Point(395, 276);
             this.lblLandUsage.Name = "lblLandUsage";
             this.lblLandUsage.Size = new System.Drawing.Size(29, 16);
             this.lblLandUsage.TabIndex = 24;
