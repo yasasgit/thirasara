@@ -38,6 +38,11 @@ Additional functions for farmers:
 
 To get started with the Agriculture Management System, please follow the installation instructions and refer to the documentation provided in the respective folders for agricultural officers and farmers.
 
+## Logins
+
+Officer: stephan@gmail.com | password
+Farmer: shaveen@gmail.com | password
+
 ## Contributing
 
 Contributions to the Agriculture Management System are welcome! If you have any ideas, suggestions, or bug reports, please submit them via the issue tracker. Additionally, pull requests for new features and improvements are highly appreciated.
