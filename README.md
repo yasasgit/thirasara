@@ -40,8 +40,12 @@ To get started with the Agriculture Management System, please follow the install
 
 ## Logins
 
-Officer: stephan@gmail.com | password
-Farmer: shaveen@gmail.com | password
+Officer: 
+stephan@gmail.com
+password
+Farmer: 
+tharindu@gmail.com 
+password
 
 ## Contributing
 
